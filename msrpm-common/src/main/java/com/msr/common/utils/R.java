@@ -1,69 +1,65 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- *
- * https://www.renren.io
- *
- * 版权所有，侵权必究！
- */
-
 package com.msr.common.utils;
 
-import org.apache.http.HttpStatus;
+import com.msr.common.utils.ResultCode;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 import java.util.HashMap;
 import java.util.Map;
+@Data
+public class R {
+    @ApiModelProperty(value = "是否成功")
+    private Boolean success;
 
-/**
- * 返回数据
- *
- * @author Mark sunlightcs@gmail.com
- */
-public class R extends HashMap<String, Object> {
-	private static final long serialVersionUID = 1L;
-	
-	public R() {
-		put("code", 0);
-		put("msg", "success");
-	}
-	
-	public static R error() {
-		return error(HttpStatus.SC_INTERNAL_SERVER_ERROR, "未知异常，请联系管理员");
-	}
-	
-	public static R error(String msg) {
-		return error(HttpStatus.SC_INTERNAL_SERVER_ERROR, msg);
-	}
-	
-	public static R error(int code, String msg) {
-		R r = new R();
-		r.put("code", code);
-		r.put("msg", msg);
-		return r;
-	}
+    @ApiModelProperty(value = "返回码")
+    private Integer code;
 
-	public static R ok(String msg) {
-		R r = new R();
-		r.put("msg", msg);
-		return r;
-	}
-	
-	public static R ok(Map<String, Object> map) {
-		R r = new R();
-		r.putAll(map);
-		return r;
-	}
-	
-	public static R ok() {
-		return new R();
-	}
+    @ApiModelProperty(value = "返回消息")
+    private String message;
 
-	public R put(String key, Object value) {
-		super.put(key, value);
-		return this;
-	}
-	public  Integer getCode() {
+    @ApiModelProperty(value = "返回数据")
+    private Map<String, Object> data = new HashMap<String, Object>();
 
-		return (Integer) this.get("code");
-	}
+    private R(){}
 
+    public static R ok(){
+        R r = new R();
+        r.setSuccess(true);
+        r.setCode(ResultCode.SUCCESS);
+        r.setMessage("成功");
+        return r;
+    }
+
+    public static R error(){
+        R r = new R();
+        r.setSuccess(false);
+        r.setCode(ResultCode.ERROR);
+        r.setMessage("失败");
+        return r;
+    }
+
+    public R success(Boolean success){
+        this.setSuccess(success);
+        return this;
+    }
+
+    public R message(String message){
+        this.setMessage(message);
+        return this;
+    }
+
+    public R code(Integer code){
+        this.setCode(code);
+        return this;
+    }
+
+    public R data(String key, Object value){
+        this.data.put(key, value);
+        return this;
+    }
+
+    public R data(Map<String, Object> map){
+        this.setData(map);
+        return this;
+    }
 }

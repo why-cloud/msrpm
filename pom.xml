@@ -16,5 +16,7 @@
         <module>renren-fast</module>
         <module>msrpm-es</module>
         <module>msrpm-sa</module>
+        <module>msrpm-rm</module>
+        <module>msrpm-tm</module>
     </modules>
 </project>

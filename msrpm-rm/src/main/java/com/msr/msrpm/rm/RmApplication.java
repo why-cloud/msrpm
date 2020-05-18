@@ -1,15 +1,19 @@
-package com.msr.msrpm.hr;
+package com.msr.msrpm.rm;
+
+
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
-@MapperScan("com.msr")
 @SpringBootApplication
-public class MsrpmHrApplication {
-
+@ComponentScan({"com.msr"})
+public class RmApplication {
     public static void main(String[] args) {
-        SpringApplication.run(MsrpmHrApplication.class, args);
-    }
 
+        SpringApplication.run(RmApplication.class);
+    }
 }
+
+

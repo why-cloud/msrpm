@@ -1,4 +1,5 @@
-package com.msr.msrpm.ei;
+package com.msr.msrpm.tm;
+
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -47,7 +48,7 @@ public class CodeGenerator {
 
         // 4、包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName("ei"); //模块名
+        pc.setModuleName("tm"); //模块名
         pc.setParent("com.msr.msrpm");
         pc.setController("controller");
         pc.setEntity("entity");
@@ -57,8 +58,7 @@ public class CodeGenerator {
 
         // 5、策略配置
         StrategyConfig strategy = new StrategyConfig();
-        strategy.setInclude("tiptopdegree");//只生成这张表，注释后生成所有表
-        //"employee","department","joblevel","nation","politicsstatus","position","workstate","engageform",
+        strategy.setInclude("temperature");//只生成这张表，注释后生成所有表
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
         strategy.setTablePrefix(pc.getModuleName() + "_"); //生成实体时去掉表前缀
 
@@ -74,5 +74,7 @@ public class CodeGenerator {
         mpg.execute();
     }
 }
+
+
 
 

@@ -1,4 +1,4 @@
-package com.msr.msrpm.ei.config;
+package com.msr.msrpm.rm.config;
 
 
 import com.baomidou.mybatisplus.core.injector.ISqlInjector;
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@MapperScan("com.msr.msrpm.ei.mapper")
+@MapperScan("com.msr.msrpm.rm.mapper")
 public class MyBatisPlusConfig {
     /**
      * SQL 执行性能分析插件
@@ -42,4 +42,5 @@ public class MyBatisPlusConfig {
         return new PaginationInterceptor();
     }
 }
+
 

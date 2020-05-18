@@ -11,6 +11,26 @@
 
     <artifactId>msrpm-common</artifactId>
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.2.1.RELEASE</version>
+            <scope>provided </scope>
+        </dependency>
+
+        <!--swagger-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.7.0</version>
+            <scope>provided </scope>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.7.0</version>
+            <scope>provided </scope>
+        </dependency>
     <!--        mybatis-plus-->
     <dependency>
         <groupId>com.baomidou</groupId>
