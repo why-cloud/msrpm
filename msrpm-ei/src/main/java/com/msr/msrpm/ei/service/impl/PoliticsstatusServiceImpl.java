@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author msr
- * @since 2020-05-14
+ * @since 2020-05-18
  */
 @Service
 public class PoliticsstatusServiceImpl extends ServiceImpl<PoliticsstatusMapper, Politicsstatus> implements PoliticsstatusService {

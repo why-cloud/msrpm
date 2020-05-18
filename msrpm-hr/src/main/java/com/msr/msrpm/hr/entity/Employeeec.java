@@ -17,7 +17,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author msr
- * @since 2020-05-14
+ * @since 2020-05-18
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -32,6 +32,10 @@ public class Employeeec implements Serializable {
 
     @ApiModelProperty(value = "员工编号")
     private Integer eid;
+
+    @ApiModelProperty(value = "所属部门")
+    @TableField("departmentId")
+    private Integer departmentId;
 
     @ApiModelProperty(value = "奖罚日期")
     @TableField("ecDate")

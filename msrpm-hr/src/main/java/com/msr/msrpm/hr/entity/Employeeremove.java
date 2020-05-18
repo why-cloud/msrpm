@@ -17,7 +17,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author msr
- * @since 2020-05-14
+ * @since 2020-05-18
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -57,6 +57,14 @@ public class Employeeremove implements Serializable {
 
     @ApiModelProperty(value = "更新时间")
     private Date gmtModified;
+
+    @ApiModelProperty(value = "调动前部门")
+    @TableField("beforeDepId")
+    private Integer beforeDepId;
+
+    @ApiModelProperty(value = "调动前职位")
+    @TableField("beforeJobId")
+    private Integer beforeJobId;
 
 
 }

@@ -17,7 +17,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author msr
- * @since 2020-05-14
+ * @since 2020-05-18
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -80,13 +80,13 @@ public class Employee implements Serializable {
     @TableField("posId")
     private Integer posId;
 
-    @ApiModelProperty(value = "聘用形式")
-    @TableField("engageForm")
-    private String engageForm;
+    @ApiModelProperty(value = "合同形式")
+    @TableField("formId")
+    private Integer formId;
 
     @ApiModelProperty(value = "最高学历")
-    @TableField("tiptopDegree")
-    private String tiptopDegree;
+    @TableField("degreeId")
+    private Integer degreeId;
 
     @ApiModelProperty(value = "所属专业")
     private String specialty;
@@ -99,8 +99,8 @@ public class Employee implements Serializable {
     private Date beginDate;
 
     @ApiModelProperty(value = "在职状态")
-    @TableField("workState")
-    private String workState;
+    @TableField("stateIId")
+    private Integer stateIId;
 
     @ApiModelProperty(value = "工号")
     @TableField("workID")

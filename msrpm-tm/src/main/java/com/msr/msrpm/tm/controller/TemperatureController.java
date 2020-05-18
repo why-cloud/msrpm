@@ -1,4 +1,4 @@
-package com.msr.msrpm.es.controller;
+package com.msr.msrpm.tm.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  *
  * @author msr
- * @since 2020-05-14
+ * @since 2020-05-18
  */
 @RestController
-@RequestMapping("/es/salary")
-public class SalaryController {
+@RequestMapping("/tm/temperature")
+public class TemperatureController {
 
 }
 
