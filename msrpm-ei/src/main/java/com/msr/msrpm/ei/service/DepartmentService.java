@@ -2,6 +2,12 @@ package com.msr.msrpm.ei.service;
 
 import com.msr.msrpm.ei.entity.Department;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.msr.msrpm.ei.mapper.DepartmentMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.security.PrivateKey;
+import java.util.List;
 
 /**
  * <p>
@@ -11,6 +17,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author msr
  * @since 2020-05-18
  */
+@Service
 public interface DepartmentService extends IService<Department> {
 
 }

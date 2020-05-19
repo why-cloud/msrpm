@@ -1,9 +1,8 @@
 package com.msr.msrpm.ei.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -131,13 +130,38 @@ public class Employee implements Serializable {
     private Integer workAge;
 
     @ApiModelProperty(value = "逻辑删除 1（true）已删除， 0（false）未删除")
+    @TableLogic
     private Boolean isDeleted;
 
     @ApiModelProperty(value = "创建时间")
+    @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 
     @ApiModelProperty(value = "更新时间")
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date gmtModified;
 
+    @TableField(exist = false)
+    private Nation nation;
 
+    @TableField(exist = false)
+    private Politicsstatus politicsstatus;
+
+    @TableField(exist = false)
+    private Department department;
+
+    @TableField(exist = false)
+    private Engageform engageform;
+
+    @TableField(exist = false)
+    private Joblevel joblevel;
+
+    @TableField(exist = false)
+    private Position position;
+
+    @TableField(exist = false)
+    private Tiptopdegree tiptopdegree;
+
+    @TableField(exist = false)
+    private Workstate workstate;
 }
