@@ -58,6 +58,10 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
     public List<Employee> getEmployee(){
         return employeeMapper.getEmployee();
     }
+    @Override
+    public List<Employee> getAll(){
+        return employeeMapper.getAll();
+    }
 
 
 }

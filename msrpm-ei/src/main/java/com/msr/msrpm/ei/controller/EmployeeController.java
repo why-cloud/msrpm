@@ -52,7 +52,7 @@ public class EmployeeController {
     @ApiOperation(value = "所有员工资料")
     @GetMapping("findAll")
     public R list(){
-        List<Employee> list = employeeService.list(null);
+        List<Employee> list = employeeService.getAll();
         return R.ok().data("item",list);
     }
 

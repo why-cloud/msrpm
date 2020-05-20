@@ -42,4 +42,73 @@
     <result column="name" property="name"/>
 </association>
 </resultMap>
+
+
+    <select id="getAll" resultMap="allemployeeMap">
+    SELECT
+    e.*,
+    d.name dname,
+    pi.name piname,
+    n.name nname,
+    p.name pname,
+    FROM employee e,department d,nation n,politicsstatus p,POSITION PI
+    WHERE d.id = e.departmentId AND n.id = e.nationId
+    AND p.id = e.politicId AND  pi.id = e.posId
+</select>
+    <resultMap id="allemployeeMap" type="com.msr.msrpm.ei.entity.Employee">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name"/>
+        <result column="gender" property="gender"/>
+        <result column="birthday" property="birthday"/>
+        <result column="idCard" property="idCard"/>
+        <result column="wedlock" property="wedlock"/>
+        <result column="nationId" property="nationId"/>
+        <result column="nativePlace" property="nativePlace"/>
+        <result column="politicId" property="politicId"/>
+        <result column="email" property="email"/>
+        <result column="phone" property="phone"/>
+        <result column="address" property="address"/>
+        <result column="departmentId" property="departmentId"/>
+        <result column="jobLevelId" property="jobLevelId"/>
+        <result column="posId" property="posId"/>
+        <result column="formId" property="engageForm"/>
+        <result column="degreeId" property="tiptopDegree"/>
+        <result column="specialty" property="specialty"/>
+        <result column="school" property="school"/>
+        <result column="beginDate" property="beginDate"/>
+        <result column="stateIId" property="workState"/>
+        <result column="workID" property="workID"/>
+        <result column="contractTerm" property="contractTerm"/>
+        <result column="conversionTime" property="conversionTime"/>
+        <result column="notWorkDate" property="notWorkDate"/>
+        <result column="beginContract" property="beginContract"/>
+        <result column="endContract" property="endContract"/>
+        <result column="workAge" property="workAge"/>
+
+        <association property="department" javaType="com.msr.msrpm.ei.entity.Department">
+            <result column="name" property="name"/>
+        </association>
+        <association property="engageform" javaType="com.msr.msrpm.ei.entity.Engageform">
+            <result column="name" property="name"/>
+        </association>
+        <association property="joblevel" javaType="com.msr.msrpm.ei.entity.Joblevel">
+            <result column="name" property="name"/>
+        </association>
+        <association property="nation" javaType="com.msr.msrpm.ei.entity.Nation">
+            <result column="name" property="name"/>
+        </association>
+        <association property="politicsstatus" javaType="com.msr.msrpm.ei.entity.Politicsstatus">
+            <result column="name" property="name"/>
+        </association>
+        <association property="position" javaType="com.msr.msrpm.ei.entity.Position">
+            <result column="name" property="name"/>
+        </association>
+        <association property="tiptopdegree" javaType="com.msr.msrpm.ei.entity.Tiptopdegree">
+            <result column="name" property="name"/>
+        </association>
+        <association property="workstate" javaType="com.msr.msrpm.ei.entity.Workstate">
+            <result column="name" property="name"/>
+        </association>
+    </resultMap>
+
 </mapper>

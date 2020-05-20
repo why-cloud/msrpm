@@ -21,4 +21,5 @@ import java.util.List;
 public interface EmployeeService extends IService<Employee> {
  void pageQuery(Page<Employee> pageParam, EmployeeQuery employeeQuery);
  public List<Employee> getEmployee();
+ public List<Employee> getAll();
 }
