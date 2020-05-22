@@ -1,10 +1,10 @@
 package com.msr.msrpm.hr.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -20,6 +20,7 @@ import lombok.experimental.Accessors;
  * @since 2020-05-18
  */
 @Data
+@TableName("employeetrain")
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value="Employeetrain对象", description="")
@@ -38,27 +39,30 @@ public class Employeetrain implements Serializable {
     private Integer departmentId;
 
     @ApiModelProperty(value = "培训日期")
-    @TableField("trainDate")
+    //@TableField("trainDate")
     private Date trainDate;
 
     @ApiModelProperty(value = "培训内容")
-    @TableField("trainContent")
+    //@TableField("trainContent")
     private String trainContent;
 
     @ApiModelProperty(value = "培训结果")
-    @TableField("trainResult")
+    //@TableField("trainResult")
     private String trainResult;
 
     @ApiModelProperty(value = "备注")
     private String remark;
 
     @ApiModelProperty(value = "逻辑删除 1（true）已删除， 0（false）未删除")
+    @TableLogic
     private Boolean isDeleted;
 
-    @ApiModelProperty(value = "创建时间")
+    @ApiModelProperty(value = "创建时间",example = "2019-01-01 8:00:00")
+    @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 
-    @ApiModelProperty(value = "更新时间")
+    @ApiModelProperty(value = "更新时间",example = "2019-01-01 8:00:00")
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date gmtModified;
 
 

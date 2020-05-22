@@ -1,25 +1,46 @@
 #spring:
-#datasource:
-#  username: root
-#  password: 123456
-#  url: jdbc:mysql://localhost:3306/msr_pm
-##  url: jdbc:mysql://localhost:3306/msr_pm?characterEncoding=utf-8&serverTimezone=GMT%2B9
-#  driver-class-name: com.mysql.cj.jdbc.Driver
-#jackson:
-#  date-format: yyyy-MM-dd HH:mm:ss
-##  timezone: GMT+9
-#application:
-#  name: msrpm-hr
-#
+#  jackson:
+#    date-format: yyyy-MM-dd HH:mm:ss
+#    time-zone: GMT+9
+#  datasource:
+#    password: a62134787
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://139.129.93.201:3306/msr_pm?characterEncoding=utf-8&serverTimezone=GMT%2B9
+#    username: root
+#  profiles:
+#    active: dev
+#server:
+#  port: 5201
 #mybatis-plus:
-#  mapper-locations: classpath:com/msr/msrpm/hr/mapper/xml/*.xml
-#  global-config:
-#    db-config:
-#      id-type: auto
-#      logic-delete-value: 1
-#      logic-not-delete-value: 0
-##      db-type: mysql
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-#server:
-#  port: 6001
+#  mapper-locations: classpath:com/msr/msrpm/hr/mapper/xml/*.xml
+#
+#
+#
+##spring:
+##datasource:
+##  username: root
+##  password: a62134787
+##  url: jdbc:mysql://139.129.93.201:3306/msr_pm?characterEncoding=utf-8&serverTimezone=GMT%2B9
+###  url: jdbc:mysql://localhost:3306/msr_pm?characterEncoding=utf-8&serverTimezone=GMT%2B9
+##  driver-class-name: com.mysql.cj.jdbc.Driver
+##jackson:
+##  date-format: yyyy-MM-dd HH:mm:ss
+###  timezone: GMT+9
+###application:
+###  name: msrpm-hr
+##
+##mybatis-plus:
+##  mapper-locations: classpath:com/msr/msrpm/hr/mapper/xml/*.xml
+##  global-config:
+##    db-config:
+##      id-type: auto
+##      logic-delete-value: 1
+##      logic-not-delete-value: 0
+###      db-type: mysql
+##  configuration:
+##    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+##server:
+##  port: 5201
+##  #port: 6001
