@@ -3,9 +3,11 @@ package com.msr.msrpm.ei.service.impl;
 import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.msr.msrpm.ei.entity.Department;
 import com.msr.msrpm.ei.entity.Employee;
 import com.msr.msrpm.ei.entity.vo.EmployeeInfoForm;
 import com.msr.msrpm.ei.listener.EmployeeListener;
+import com.msr.msrpm.ei.mapper.DepartmentMapper;
 import com.msr.msrpm.ei.mapper.EmployeeMapper;
 import com.msr.msrpm.ei.query.EmployeeQuery;
 import com.msr.msrpm.ei.service.EmployeeService;
@@ -59,6 +61,12 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
     @Override
     public List<Employee> getAll(){
         return employeeMapper.getAll();
+    }
+
+    @Override
+    public List<Department> getAllDep(){
+
+        return employeeMapper.getAllDep();
     }
 
 
