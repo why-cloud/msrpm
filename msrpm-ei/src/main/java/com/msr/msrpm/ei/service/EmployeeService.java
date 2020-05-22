@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.msr.msrpm.ei.entity.Employee;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.msr.msrpm.ei.query.EmployeeQuery;
-import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 
@@ -17,9 +17,9 @@ import java.util.List;
  * @author msr
  * @since 2020-05-18
  */
-@Service
+
 public interface EmployeeService extends IService<Employee> {
  void pageQuery(Page<Employee> pageParam, EmployeeQuery employeeQuery);
- public List<Employee> getEmployee();
  public List<Employee> getAll();
+
 }

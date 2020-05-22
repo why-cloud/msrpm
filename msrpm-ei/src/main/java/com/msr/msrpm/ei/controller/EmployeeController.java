@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -27,7 +28,6 @@ import java.util.List;
 @Api(description="员工资料")
 @RestController
 @RequestMapping("/ei/employee")
-
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
@@ -50,7 +50,7 @@ public class EmployeeController {
 
 
     @ApiOperation(value = "所有员工资料")
-    @GetMapping("findAll")
+    @GetMapping("alllist")
     public R list(){
         List<Employee> list = employeeService.getAll();
         return R.ok().data("item",list);
@@ -83,7 +83,7 @@ public class EmployeeController {
         return R.ok().data("total",total).data("rows",records);
     }
     @ApiOperation(value = "新增员工")
-    @PostMapping
+    @PostMapping("save")
     public R save(
             @ApiParam(name = "employee", value = "员工对象", required = true)
             @RequestBody Employee employee){
@@ -113,12 +113,12 @@ public class EmployeeController {
         employeeService.updateById(employee);
         return R.ok();
     }
-    @ApiOperation(value = "前端展示员工信息")
-    @GetMapping
+    /*@ApiOperation(value = "前端展示员工信息")
+    @GetMapping("list")
     public R getEmployee(){
         List<Employee> employees = employeeService.getEmployee();
         return R.ok().data("employees",employees);
-    }
+    }*/
     @ApiOperation(value = "所有部门列表")
     @GetMapping("/deps")
     public R depsList() {
@@ -144,7 +144,7 @@ public class EmployeeController {
         return R.ok().data("nations",nations);
     }
     @ApiOperation(value = "政治面貌列表")
-    @GetMapping("/politicsstatus")
+    @GetMapping("politicsstatus")
     public R politicList(){
         List<Politicsstatus> politic = politicsstatusService.list(null);
         return R.ok().data("politics",politic);
@@ -167,5 +167,6 @@ public class EmployeeController {
         List<Workstate> states = workstateService.list(null);
         return R.ok().data("states",states);
     }
+
 }
 

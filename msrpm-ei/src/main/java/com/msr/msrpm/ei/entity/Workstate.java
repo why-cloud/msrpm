@@ -32,7 +32,7 @@ public class Workstate implements Serializable {
     private Integer id;
 
     @ApiModelProperty(value = "在职状态")
-    private String state;
+    private String name;
 
     @ApiModelProperty(value = "逻辑删除")
     @TableLogic

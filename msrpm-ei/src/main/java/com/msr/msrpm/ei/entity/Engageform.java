@@ -32,7 +32,7 @@ public class Engageform implements Serializable {
     private Integer id;
 
     @ApiModelProperty(value = "聘用形式")
-    private String form;
+    private String name;
 
     @ApiModelProperty(value = "逻辑删除")
     @TableLogic

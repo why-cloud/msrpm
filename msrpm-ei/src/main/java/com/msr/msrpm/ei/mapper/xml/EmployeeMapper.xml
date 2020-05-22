@@ -1,59 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.msr.msrpm.ei.mapper.EmployeeMapper">
-    <select id="getEmployee" resultMap="employeeMap">
-    SELECT
-    e.name,
-    e.workId,
-    d.name dname,
-    pi.name piname,
-    e.gender,
-    n.name nname,
-    e.wedlock,
-    p.name pname,
-    e.nativePlace,
-    e.birthday,
-    e.idCard,
-    e.email
-    FROM employee e,department d,nation n,politicsstatus p,POSITION PI
-    WHERE d.id = e.departmentId AND n.id = e.nationId
-    AND p.id = e.politicId AND  pi.id = e.posId
-</select>
-<resultMap id="employeeMap" type="com.msr.msrpm.ei.entity.Employee">
-<result column="name" property="name"/>
-<result column="workId" property="workID"/>
-<result column="gender" property="gender"/>
-<result column="wedlock" property="wedlock"/>
-<result column="nativePlace" property="nativePlace"/>
-<result column="birthday" property="birthday"/>
-<result column="idCard" property="idCard"/>
-<result column="email" property="email"/>
-
-<association property="department" javaType="com.msr.msrpm.ei.entity.Department">
-    <result column="name" property="name"/>
-</association>
-<association property="nation" javaType="com.msr.msrpm.ei.entity.Nation">
-    <result column="name" property="name"/>
-</association>
-<association property="politicsstatus" javaType="com.msr.msrpm.ei.entity.Politicsstatus">
-    <result column="name" property="name"/>
-</association>
-<association property="position" javaType="com.msr.msrpm.ei.entity.Position">
-    <result column="name" property="name"/>
-</association>
-</resultMap>
-
-
     <select id="getAll" resultMap="allemployeeMap">
     SELECT
-    e.*,
-    d.name dname,
-    pi.name piname,
-    n.name nname,
-    p.name pname,
-    FROM employee e,department d,nation n,politicsstatus p,POSITION PI
-    WHERE d.id = e.departmentId AND n.id = e.nationId
-    AND p.id = e.politicId AND  pi.id = e.posId
+    e.`name`,e.`workID`,e.`gender`,d.`name` AS depName,e.`birthday`,e.`idCard`,
+    e.`wedlock`,e.`nativePlace`,n.`name` AS nationName,ps.`name` AS politicName,
+    e.`email`,e.`phone`,e.`address`,j.`name` AS jobName,p.`name` AS posName,
+    f.`name` AS formName,t.`name` AS degreeName,e.`specialty`,e.`school`,e.`beginDate`,
+    w.`name` AS stateName,e.`contractTerm`,e.`conversionTime`,e.`notWorkDate`,
+    e.`beginContract`,e.`endContract`,e.`workAge`,e.`gmt_create`,e.`gmt_modified`
+    FROM employee e
+    JOIN department d ON e.`departmentId` = d.`id`
+    JOIN nation n ON e.nationId = n.id
+    JOIN politicsstatus ps ON e.politicId = ps.id
+    JOIN joblevel j ON e.jobLevelId = j.id
+    JOIN position p ON e.posId = p.id
+    JOIN engageform f ON e.formId = f.id
+    JOIN tiptopdegree t ON e.degreeId = t.id
+    JOIN workstate w ON e.stateIId = w.id
 </select>
     <resultMap id="allemployeeMap" type="com.msr.msrpm.ei.entity.Employee">
         <id column="id" property="id" jdbcType="INTEGER"/>
@@ -86,28 +50,28 @@
         <result column="workAge" property="workAge"/>
 
         <association property="department" javaType="com.msr.msrpm.ei.entity.Department">
-            <result column="name" property="name"/>
+            <result column="depName" property="name"/>
         </association>
         <association property="engageform" javaType="com.msr.msrpm.ei.entity.Engageform">
-            <result column="name" property="name"/>
+            <result column="formName" property="name"/>
         </association>
         <association property="joblevel" javaType="com.msr.msrpm.ei.entity.Joblevel">
-            <result column="name" property="name"/>
+            <result column="jobName" property="name"/>
         </association>
         <association property="nation" javaType="com.msr.msrpm.ei.entity.Nation">
-            <result column="name" property="name"/>
+            <result column="nationName" property="name"/>
         </association>
         <association property="politicsstatus" javaType="com.msr.msrpm.ei.entity.Politicsstatus">
-            <result column="name" property="name"/>
+            <result column="politicName" property="name"/>
         </association>
         <association property="position" javaType="com.msr.msrpm.ei.entity.Position">
-            <result column="name" property="name"/>
+            <result column="posName" property="name"/>
         </association>
         <association property="tiptopdegree" javaType="com.msr.msrpm.ei.entity.Tiptopdegree">
-            <result column="name" property="name"/>
+            <result column="degreeName" property="name"/>
         </association>
         <association property="workstate" javaType="com.msr.msrpm.ei.entity.Workstate">
-            <result column="name" property="name"/>
+            <result column="stateName" property="name"/>
         </association>
     </resultMap>
 

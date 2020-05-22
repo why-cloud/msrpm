@@ -16,6 +16,5 @@ import java.util.List;
  */
 @Repository
 public interface EmployeeMapper extends BaseMapper<Employee> {
-    public List<Employee> getEmployee();
     public List<Employee> getAll();
 }
