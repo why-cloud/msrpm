@@ -26,6 +26,8 @@ import lombok.experimental.Accessors;
 public class Department implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @TableField(exist = false)
+    private Employee employee;
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;

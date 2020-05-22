@@ -75,4 +75,12 @@
         </association>
     </resultMap>
 
+    <select id="getAllDep" resultType="com.msr.msrpm.ei.entity.Department">
+    SELECT
+    e.departmentId,d.name AS depName
+    FROM
+    department d,employee e
+   where e.`departmentId` = d.id
+</select>
+
 </mapper>

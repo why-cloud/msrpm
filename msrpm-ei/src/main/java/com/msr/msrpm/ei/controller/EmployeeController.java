@@ -55,6 +55,12 @@ public class EmployeeController {
         List<Employee> list = employeeService.getAll();
         return R.ok().data("item",list);
     }
+    @ApiOperation(value = "根据ID查询部门名字")
+    @GetMapping("/deplist")
+    public R depList(){
+        List<Department> list = employeeService.getAllDep();
+        return R.ok().data("department",list);
+    }
 
     @ApiOperation(value = "根据ID删除员工")
     @DeleteMapping("{id}")
@@ -125,12 +131,14 @@ public class EmployeeController {
         List<Department> departments = departmentService.list(null);
         return R.ok().data("departments",departments);
     }
+
     @ApiOperation(value = "所有合同形式列表")
     @GetMapping("/form")
     public R formList() {
         List<Engageform> engageforms = engageformService.list(null);
         return R.ok().data("engageforms",engageforms);
     }
+
     @ApiOperation(value = "职称列表")
     @GetMapping("/joblevels")
     public R jobList() {
