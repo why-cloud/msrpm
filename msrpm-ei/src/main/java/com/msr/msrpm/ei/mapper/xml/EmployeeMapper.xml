@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.msr.msrpm.ei.mapper.EmployeeMapper">
-    <select id="getAll" resultMap="allemployeeMap">
-    SELECT
-    e.`name`,e.`workID`,e.`gender`,d.`name` AS depName,e.`birthday`,e.`idCard`,
-    e.`wedlock`,e.`nativePlace`,n.`name` AS nationName,ps.`name` AS politicName,
-    e.`email`,e.`phone`,e.`address`,j.`name` AS jobName,p.`name` AS posName,
-    f.`name` AS formName,t.`name` AS degreeName,e.`specialty`,e.`school`,e.`beginDate`,
-    w.`name` AS stateName,e.`contractTerm`,e.`conversionTime`,e.`notWorkDate`,
-    e.`beginContract`,e.`endContract`,e.`workAge`,e.`gmt_create`,e.`gmt_modified`
+    <select id="getAll" resultMap="BaseResultMap">
+   SELECT
+ e.*,d.`name` AS depName,n.`name` AS nationName,ps.`name` AS politicName,
+ j.`name` AS jobName,p.`name` AS posName,
+    f.`name` AS formName,t.`name` AS degreeName,w.`name` AS stateName
     FROM employee e
-    JOIN department d ON e.`departmentId` = d.`id`
-    JOIN nation n ON e.nationId = n.id
-    JOIN politicsstatus ps ON e.politicId = ps.id
-    JOIN joblevel j ON e.jobLevelId = j.id
-    JOIN position p ON e.posId = p.id
-    JOIN engageform f ON e.formId = f.id
-    JOIN tiptopdegree t ON e.degreeId = t.id
-    JOIN workstate w ON e.stateIId = w.id
+    INNER JOIN department d ON e.`departmentId` = d.`id`
+    INNER JOIN nation n ON e.nationId = n.id
+    INNER JOIN politicsstatus ps ON e.politicId = ps.id
+    INNER JOIN joblevel j ON e.jobLevelId = j.id
+    INNER JOIN position p ON e.posId = p.id
+    INNER JOIN engageform f ON e.formId = f.id
+    INNER JOIN tiptopdegree t ON e.degreeId = t.id
+    INNER JOIN workstate w ON e.stateIId = w.id
+    ORDER BY e.`id`
 </select>
-    <resultMap id="allemployeeMap" type="com.msr.msrpm.ei.entity.Employee">
+    <resultMap id="BaseResultMap" type="com.msr.msrpm.ei.entity.Employee">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="name" property="name"/>
         <result column="gender" property="gender"/>
@@ -35,12 +33,12 @@
         <result column="departmentId" property="departmentId"/>
         <result column="jobLevelId" property="jobLevelId"/>
         <result column="posId" property="posId"/>
-        <result column="formId" property="engageForm"/>
-        <result column="degreeId" property="tiptopDegree"/>
+        <result column="formId" property="formId"/>
+        <result column="degreeId" property="degreeId"/>
         <result column="specialty" property="specialty"/>
         <result column="school" property="school"/>
         <result column="beginDate" property="beginDate"/>
-        <result column="stateIId" property="workState"/>
+        <result column="stateIId" property="stateIId"/>
         <result column="workID" property="workID"/>
         <result column="contractTerm" property="contractTerm"/>
         <result column="conversionTime" property="conversionTime"/>
@@ -74,13 +72,19 @@
             <result column="stateName" property="name"/>
         </association>
     </resultMap>
-
-    <select id="getAllDep" resultType="com.msr.msrpm.ei.entity.Department">
-    SELECT
-    e.departmentId,d.name AS depName
-    FROM
-    department d,employee e
-   where e.`departmentId` = d.id
+    <select id="getAllDep" resultMap="depMap" >
+    SELECT e.id,e.name,d.name AS depName
+    FROM employee AS e
+    INNER JOIN department AS d
+    ON e.`departmentId`=d.id
+    ORDER BY e.`id`
 </select>
-
+    <resultMap id="depMap" type="com.msr.msrpm.ei.entity.Employee" >
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name"/>
+        <result column="departmentId" property="departmentId"/>
+        <association property="department" javaType="com.msr.msrpm.ei.entity.Department">
+            <result column="depName" property="name"/>
+        </association>
+    </resultMap>
 </mapper>
