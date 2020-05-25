@@ -14,6 +14,7 @@
         <module>msrpm-common</module>
         <module>msrpm-ei</module>
         <module>renren-fast</module>
+        <module>renren-generator</module>
         <module>msrpm-es</module>
         <module>msrpm-sa</module>
         <module>msrpm-rm</module>

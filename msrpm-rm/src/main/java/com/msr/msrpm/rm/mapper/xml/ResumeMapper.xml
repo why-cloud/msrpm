@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.msr.msrpm.rm.mapper.ResumeMapper">
+<!--    <select id="getResumePosition"  resultMap="resumePositionMap" >-->
+<!--        SELECT-->
+<!--            r.*,-->
+<!--            p.name pname,-->
+<!--            d.degree-->
 
+<!--        FROM-->
+<!--            resume r,position p,tiptopdegree d-->
+
+<!--        WHERE r.appli_posId=p.id and r.tiptopDegreeId=d.id AND r.is_deleted=0-->
+
+
+<!--    </select>-->
+<!--    <resultMap id="resumePositionMap" type="com.msr.msrpm.rm.entity.Resume">-->
+
+<!--        <id column="id" property="id"></id>-->
+<!--        <result column="rname" property="rname"></result>-->
+<!--        <result column="gender" property="gender"></result>-->
+<!--        <result column="phone" property="phone"></result>-->
+<!--        <result column="appli_posId" property="appliPosid"></result>-->
+<!--        <result column="tiptopDegreeId" property="tiptopDegreeId"></result>-->
+<!--        <result column="age" property="age"></result>-->
+<!--        <result column="gmt_create" property="gmtCreate"></result>-->
+
+<!--        <association property="position" javaType="com.msr.msrpm.rm.entity.Position">-->
+<!--            &lt;!&ndash;    映射属性    &ndash;&gt;-->
+<!--            <result column="pname" property="name"></result>-->
+
+<!--        </association>-->
+
+<!--        <association property="tiptopdegree" javaType="com.msr.msrpm.rm.entity.Tiptopdegree">-->
+<!--            &lt;!&ndash;    映射属性    &ndash;&gt;-->
+<!--            <result column="degree" property="degree"></result>-->
+
+<!--        </association>-->
+<!--    </resultMap>-->
 </mapper>

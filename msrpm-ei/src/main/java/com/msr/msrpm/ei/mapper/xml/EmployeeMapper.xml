@@ -1,5 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.msr.msrpm.ei.mapper.EmployeeMapper">
+    <select id="getAll" resultMap="BaseResultMap">
+   SELECT
+ e.*,d.`name` AS depName,n.`name` AS nationName,ps.`name` AS politicName,
+ j.`name` AS jobName,p.`name` AS posName,
+    f.`name` AS formName,t.`name` AS degreeName,w.`name` AS stateName
+    FROM employee e
+    INNER JOIN department d ON e.`departmentId` = d.`id`
+    INNER JOIN nation n ON e.nationId = n.id
+    INNER JOIN politicsstatus ps ON e.politicId = ps.id
+    INNER JOIN joblevel j ON e.jobLevelId = j.id
+    INNER JOIN position p ON e.posId = p.id
+    INNER JOIN engageform f ON e.formId = f.id
+    INNER JOIN tiptopdegree t ON e.degreeId = t.id
+    INNER JOIN workstate w ON e.stateIId = w.id
+    ORDER BY e.`id`
+</select>
+    <resultMap id="BaseResultMap" type="com.msr.msrpm.ei.entity.Employee">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name"/>
+        <result column="gender" property="gender"/>
+        <result column="birthday" property="birthday"/>
+        <result column="idCard" property="idCard"/>
+        <result column="wedlock" property="wedlock"/>
+        <result column="nationId" property="nationId"/>
+        <result column="nativePlace" property="nativePlace"/>
+        <result column="politicId" property="politicId"/>
+        <result column="email" property="email"/>
+        <result column="phone" property="phone"/>
+        <result column="address" property="address"/>
+        <result column="departmentId" property="departmentId"/>
+        <result column="jobLevelId" property="jobLevelId"/>
+        <result column="posId" property="posId"/>
+        <result column="formId" property="formId"/>
+        <result column="degreeId" property="degreeId"/>
+        <result column="specialty" property="specialty"/>
+        <result column="school" property="school"/>
+        <result column="beginDate" property="beginDate"/>
+        <result column="stateIId" property="stateIId"/>
+        <result column="workID" property="workID"/>
+        <result column="contractTerm" property="contractTerm"/>
+        <result column="conversionTime" property="conversionTime"/>
+        <result column="notWorkDate" property="notWorkDate"/>
+        <result column="beginContract" property="beginContract"/>
+        <result column="endContract" property="endContract"/>
+        <result column="workAge" property="workAge"/>
 
+        <association property="department" javaType="com.msr.msrpm.ei.entity.Department">
+            <result column="depName" property="name"/>
+        </association>
+        <association property="engageform" javaType="com.msr.msrpm.ei.entity.Engageform">
+            <result column="formName" property="name"/>
+        </association>
+        <association property="joblevel" javaType="com.msr.msrpm.ei.entity.Joblevel">
+            <result column="jobName" property="name"/>
+        </association>
+        <association property="nation" javaType="com.msr.msrpm.ei.entity.Nation">
+            <result column="nationName" property="name"/>
+        </association>
+        <association property="politicsstatus" javaType="com.msr.msrpm.ei.entity.Politicsstatus">
+            <result column="politicName" property="name"/>
+        </association>
+        <association property="position" javaType="com.msr.msrpm.ei.entity.Position">
+            <result column="posName" property="name"/>
+        </association>
+        <association property="tiptopdegree" javaType="com.msr.msrpm.ei.entity.Tiptopdegree">
+            <result column="degreeName" property="name"/>
+        </association>
+        <association property="workstate" javaType="com.msr.msrpm.ei.entity.Workstate">
+            <result column="stateName" property="name"/>
+        </association>
+    </resultMap>
+    <select id="getAllDep" resultMap="depMap" >
+    SELECT e.id,e.name,d.name AS depName
+    FROM employee AS e
+    INNER JOIN department AS d
+    ON e.`departmentId`=d.id
+    ORDER BY e.`id`
+</select>
+    <resultMap id="depMap" type="com.msr.msrpm.ei.entity.Employee" >
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name"/>
+        <result column="departmentId" property="departmentId"/>
+        <association property="department" javaType="com.msr.msrpm.ei.entity.Department">
+            <result column="depName" property="name"/>
+        </association>
+    </resultMap>
 </mapper>

@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.msr.msrpm.rm.mapper.AuditionMapper">
+    <select id="getResumePosition"  resultMap="auditionPositionMap" >
+
+SELECT
+            a.*,
+            p.name pname
+    FROM
+         audition a ,position p
+
+    WHERE a.appli_posId=p.id  AND a.is_deleted=0
+ </select>
+    <resultMap id="auditionPositionMap" type="com.msr.msrpm.rm.vo.AuditionPositionVo">
+        <id column="id" property="id"></id>
+        <result column="appli_posId" property="appliPosid"></result>
+        <result column="name" property="name"></result>
+
+        <result column="audition_time" property="auditionTime"></result>
+        <result column="audition_num" property="auditionNum"></result>
+
+        <result column="audition_per" property="auditionPer"></result>
+        <result column="result" property="result"></result>
+
+        <association property="position" javaType="com.msr.msrpm.rm.entity.Position">
+            <!--    映射属性    -->
+            <result column="pname" property="name"></result>
+
+        </association>
+    </resultMap>
 
 </mapper>
