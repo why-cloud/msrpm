@@ -1,7 +1,6 @@
 package com.msr.msrpm.ei;
 
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,5 +13,6 @@ public class EiApplication {
 
         SpringApplication.run(EiApplication.class);
     }
+
 }
 

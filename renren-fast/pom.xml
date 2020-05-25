@@ -334,5 +334,7 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-
+<!--<modules>-->
+<!--	<module>msrpm-hr</module>-->
+<!--</modules>-->
 </project>
