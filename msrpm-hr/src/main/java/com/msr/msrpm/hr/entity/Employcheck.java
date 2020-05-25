@@ -32,6 +32,10 @@ public class Employcheck implements Serializable {
 	@ApiModelProperty(value = "员工编号")
 	private Integer eid;
 
+	//@ApiModelProperty(value = "员工姓名")
+	@TableField(exist = false)
+	private String name = null;
+
 	@ApiModelProperty(value = "本月天数")
 	private Integer daysMonth;
 

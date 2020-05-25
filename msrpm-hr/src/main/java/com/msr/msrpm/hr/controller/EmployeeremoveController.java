@@ -1,6 +1,7 @@
 package com.msr.msrpm.hr.controller;
 
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.msr.common.utils.PageUtils;
 import com.msr.common.utils.R;
 import com.msr.common.utils.R1;
@@ -42,8 +43,16 @@ public class EmployeeremoveController {
         return R1.ok().put("page", page);
         //put
     }
-
-
+    @RequestMapping("/list/dep")
+    public R1 listDep(){
+        //employeeremoveService.getDepList();
+        return R1.ok().put("dep",employeeremoveService.getDepList());
+    }
+    @RequestMapping("/list/job")
+    public R1 listJob(){
+        //employeeremoveService.getDepList();
+        return R1.ok().put("job",employeeremoveService.getJobList());
+    }
     /**
      * 信息
      */

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.msr.common.utils.PageUtils;
 import com.msr.common.utils.Query;
+import com.msr.msrpm.hr.entity.Employcheck;
 import com.msr.msrpm.hr.entity.Employeetrain;
 import com.msr.msrpm.hr.mapper.EmployeetrainMapper;
 import com.msr.msrpm.hr.service.EmployeetrainService;
@@ -28,7 +29,10 @@ public class EmployeetrainServiceImpl extends ServiceImpl<EmployeetrainMapper, E
                 new Query<Employeetrain>().getPage(params),
                 new QueryWrapper<Employeetrain>()
         );
-
+        for(int i = 0;i<page.getRecords().size();i++){
+            Employeetrain employeetrain = page.getRecords().get(i);
+            employeetrain.setName(baseMapper.getNameById(employeetrain.getId()))
+            ;}
         return new PageUtils(page);
     }
 }

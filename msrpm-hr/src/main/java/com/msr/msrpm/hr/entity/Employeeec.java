@@ -34,6 +34,9 @@ public class Employeeec implements Serializable {
     @ApiModelProperty(value = "员工编号")
     private Integer eid;
 
+    @TableField(exist = false)
+    private String name = null;
+
     @ApiModelProperty(value = "所属部门")
     //@TableField("departmentId")
     private Integer departmentId;
