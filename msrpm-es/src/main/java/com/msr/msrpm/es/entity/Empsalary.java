@@ -27,10 +27,32 @@ public class Empsalary implements Serializable {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
-
+    @ApiModelProperty(value = "")
     private Integer eid;
-
+    @ApiModelProperty(value = "")
     private Integer sid;
-
+//    public Integer getId() {
+//        return id;
+//    }
+//
+//    public void setId(Integer id) {
+//        this.id = id;
+//    }
+//
+//    public Integer getEid() {
+//        return eid;
+//    }
+//
+//    public void setEid(Integer eid) {
+//        this.eid = eid;
+//    }
+//
+//    public Integer getSid() {
+//        return sid;
+//    }
+//
+//    public void setSid(Integer sid) {
+//        this.sid = sid;
+//    }
 
 }
