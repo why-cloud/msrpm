@@ -9,10 +9,13 @@ import io.swagger.annotations.Api;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -60,6 +63,14 @@ public class EmployeeController {
     public R depList(){
         List<Department> list = employeeService.getAllDep();
         return R.ok().data("department",list);
+    }
+    @ApiOperation(value = "批量删除")
+    @PostMapping("{idList}")
+    public R removeByIds(
+            @ApiParam(name="id",value = "员工id",required = true)
+            @RequestBody List<String> idList){
+        employeeService.removeByIds(idList);
+        return R.ok();
     }
 
     @ApiOperation(value = "根据ID删除员工")
@@ -175,6 +186,7 @@ public class EmployeeController {
         List<Workstate> states = workstateService.list(null);
         return R.ok().data("states",states);
     }
+
 
 }
 
