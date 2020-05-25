@@ -1,7 +1,10 @@
 package com.msr.msrpm.hr.service;
 
+import com.msr.common.utils.PageUtils;
 import com.msr.msrpm.hr.entity.Employeeec;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -12,5 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2020-05-18
  */
 public interface EmployeeecService extends IService<Employeeec> {
-
+    PageUtils queryPage(Map<String, Object> params);
 }
