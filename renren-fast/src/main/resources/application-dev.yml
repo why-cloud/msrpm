@@ -3,12 +3,9 @@ spring:
         type: com.alibaba.druid.pool.DruidDataSource
         druid:
             driver-class-name: com.mysql.cj.jdbc.Driver
-            url: jdbc:mysql://139.129.93.201:3306/renren_admin_2?characterEncoding=utf-8&serverTimezone=GMT%2B9
+            url: jdbc:mysql://139.129.93.201/renren_admin_2?characterEncoding=utf-8&serverTimezone=GMT%2B9
             username: root
             password: a62134787
-#            url: jdbc:mysql://localhost:3306/msrpm_admin?characterEncoding=utf-8&serverTimezone=GMT%2B9
-#            username: root
-#            password: /123456wt
             initial-size: 10
             max-active: 100
             min-idle: 10

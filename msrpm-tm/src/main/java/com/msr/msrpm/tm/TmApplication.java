@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan({"com.msr"})
-@MapperScan("com.msr")
+//@MapperScan("com.msr")
 public class TmApplication {
     public static void main(String[] args) {
         SpringApplication.run(TmApplication.class);

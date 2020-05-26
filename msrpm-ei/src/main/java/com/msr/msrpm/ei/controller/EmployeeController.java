@@ -9,11 +9,16 @@ import io.swagger.annotations.Api;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 /**
@@ -60,6 +65,14 @@ public class EmployeeController {
     public R depList(){
         List<Department> list = employeeService.getAllDep();
         return R.ok().data("department",list);
+    }
+    @ApiOperation(value = "批量删除")
+    @PostMapping("{idList}")
+    public R removeByIds(
+            @ApiParam(name="id",value = "员工id",required = true)
+            @RequestBody List<String> idList){
+        employeeService.removeByIds(idList);
+        return R.ok();
     }
 
     @ApiOperation(value = "根据ID删除员工")
@@ -176,5 +189,45 @@ public class EmployeeController {
         return R.ok().data("states",states);
     }
 
+    @ApiOperation(value = "统计员工男女人数")
+    @GetMapping("gender")
+    public R getGenderCountOfEmp(){
+        List<Map<String, Object>> mapList = employeeService.getGenderCountOfEmp();
+        return  R.ok().data("items",mapList);
+    }
+
+    @ApiOperation(value = "统计各部门人数")
+    @GetMapping("department")
+    public R getDeCountOfEmp(){
+        List<Map<String, Object>> mapList = employeeService.getDeCountOfEmp();
+        return  R.ok().data("items",mapList);
+    }
+    @ApiOperation(value = "统计员工学历")
+    @GetMapping("degree")
+    public R getDegreeCountOfEmp(){
+        List<Map<String, Object>> mapList = employeeService.getDegreeCountOfEmp();
+        return  R.ok().data("items",mapList);
+    }
+
+    @ApiOperation(value = "统计员工职位")
+    @GetMapping("positionCount")
+    public R getPositionCountOfEmp(){
+        List<Map<String, Object>> mapList = employeeService.getPositionCountOfEmp();
+        return  R.ok().data("items",mapList);
+    }
+
+    @ApiOperation(value = "统计部门男女员工")
+    @GetMapping("depGender")
+    public R getGenderCountOfDepartment(){
+        List<Map<String, Object>> mapList = employeeService.getGenderCountOfDepartment();
+        return  R.ok().data("items",mapList);
+    }
+    //统计职位的男女人数
+    @ApiOperation(value = "统计员工职位男女")
+    @GetMapping("posGender")
+    public R getPositionGenderCountOfEmp(){
+        List<Map<String, Object>> mapList = employeeService.getPositionGenderCountOfEmp();
+        return  R.ok().data("items",mapList);
+    }
 }
 

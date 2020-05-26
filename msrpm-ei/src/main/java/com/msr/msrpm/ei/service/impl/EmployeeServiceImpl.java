@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -32,6 +33,8 @@ import java.util.List;
  */
 @Service
 public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> implements EmployeeService {
+    @Autowired(required = false)
+    private DepartmentMapper departmentMapper;
     @Override
     public void pageQuery(Page<Employee> pageParam, EmployeeQuery employeeQuery) {
         QueryWrapper<Employee> queryWrapper = new QueryWrapper<>();
@@ -69,5 +72,55 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
         return employeeMapper.getAllDep();
     }
 
+    /**
+     * 统计员工男女人数 張家興
+     * @return
+     */
+    @Override
+    public List<Map<String, Object>> getGenderCountOfEmp() {
+        QueryWrapper<Employee> queryWrapper = new QueryWrapper<>();
+        queryWrapper
+                .select("gender as name","count(*) value")
+                .groupBy("gender");
+        List<Map<String, Object>> maps = baseMapper.selectMaps(queryWrapper);
+        return maps;
+    }
 
+    /**
+     * 统计部门员工数
+     * @return
+     */
+    @Override
+    public List<Map<String, Object>> getDeCountOfEmp() {
+        return baseMapper.getDeCountOfEmp();
+    }
+
+    /**
+     * 统计员工最高学历
+     * @return
+     */
+    @Override
+    public List<Map<String, Object>> getDegreeCountOfEmp() {
+        return baseMapper.getDegreeCountOfEmp();
+    }
+
+    /**
+     * 统计员工职位
+     * @return
+     */
+    @Override
+    public List<Map<String, Object>> getPositionCountOfEmp() {
+        return baseMapper.getPositionCountOfEmp();
+    }
+
+    @Override
+    public List<Map<String, Object>> getGenderCountOfDepartment() {
+        return baseMapper.getGenderCountOfDepartment();
+    }
+
+    //统计职位的男女人数
+    @Override
+    public List<Map<String, Object>> getPositionGenderCountOfEmp() {
+        return baseMapper.getPositionGenderCountOfEmp();
+    }
 }
