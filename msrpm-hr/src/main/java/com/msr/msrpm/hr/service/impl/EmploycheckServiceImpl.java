@@ -1,5 +1,6 @@
 package com.msr.msrpm.hr.service.impl;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.msr.msrpm.hr.entity.Employcheck;
 import com.msr.msrpm.hr.mapper.EmploycheckMapper;
 import org.springframework.stereotype.Service;
@@ -18,11 +19,15 @@ public class EmploycheckServiceImpl extends ServiceImpl<EmploycheckMapper, Emplo
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
+
         IPage<Employcheck> page = this.page(
                 new Query<Employcheck>().getPage(params),
                 new QueryWrapper<Employcheck>()
         );
-
+        for(int i = 0;i<page.getRecords().size();i++){
+        Employcheck employcheck = page.getRecords().get(i);
+        employcheck.setName(baseMapper.getNameById(employcheck.getId()))
+        ;}
         return new PageUtils(page);
     }
 

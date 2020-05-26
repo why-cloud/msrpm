@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.msr.common.utils.PageUtils;
 import com.msr.common.utils.Query;
+import com.msr.msrpm.hr.entity.Employcheck;
 import com.msr.msrpm.hr.entity.Employeeec;
 import com.msr.msrpm.hr.mapper.EmployeeecMapper;
 import com.msr.msrpm.hr.service.EmployeeecService;
@@ -29,7 +30,10 @@ public class EmployeeecServiceImpl extends ServiceImpl<EmployeeecMapper, Employe
                 new QueryWrapper<Employeeec>()
 
         );
-
+        for(int i = 0;i<page.getRecords().size();i++){
+            Employeeec employeeec = page.getRecords().get(i);
+            employeeec.setName(baseMapper.getNameById(employeeec.getId()))
+            ;}
         return new PageUtils(page);
     }
 
