@@ -1,5 +1,6 @@
 package com.msr.msrpm.tm.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -40,7 +41,7 @@ public class Temperature implements Serializable {
     private Float temperature;
 
     @ApiModelProperty(value = "是否正常 1（true）正常， 0（false）异常")
-    private Boolean isUnusual;
+    private String isUnusual;
 
     @ApiModelProperty(value = "其他症状")
     private String otherSymptoms;
@@ -49,10 +50,13 @@ public class Temperature implements Serializable {
     private Boolean isDeleted;
 
     @ApiModelProperty(value = "创建时间")
+    @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 
     @ApiModelProperty(value = "更新时间")
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date gmtModified;
+
 
 
 }

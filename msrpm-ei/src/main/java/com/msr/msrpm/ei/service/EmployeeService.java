@@ -8,6 +8,7 @@ import com.msr.msrpm.ei.query.EmployeeQuery;
 
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -24,4 +25,19 @@ public interface EmployeeService extends IService<Employee> {
  public List<Employee> getAll();
  public List<Department> getAllDep();
 
+ /**
+  * 统计员工男女人数 張家興
+  * @return
+  */
+ List<Map<String, Object>> getGenderCountOfEmp();
+
+ List<Map<String, Object>> getDeCountOfEmp();
+
+ List<Map<String, Object>> getDegreeCountOfEmp();
+
+ List<Map<String, Object>> getPositionCountOfEmp();
+
+ List<Map<String, Object>> getGenderCountOfDepartment();
+
+ List<Map<String, Object>> getPositionGenderCountOfEmp();
 }

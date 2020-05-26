@@ -1,5 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.msr.msrpm.rm.mapper.EmployeehiringMapper">
+    <select id="getEmployeeHiring" resultMap="hiringMap">
+    select
+        e.id eid,
+        e.name ename,
+        e.entry_time,
+        e.phone,
+        p.name pname
+
+    from
+        employeehiring e ,position p
+    where
+    e.posId=p.id AND e.is_deleted=0
+
+<!--        <if test="emp.name !=null and emp.name!=''">-->
+<!--            and ename like concat('%',#{emp.name},'%')-->
+<!--        </if>-->
+<!--        <if test="emp.id !=null and emp.id!=''">-->
+<!--            and eid = #{emp.id}-->
+<!--        </if>-->
+<!--        <if test="emp.entryTime !=null and emp.entryTime!=''">-->
+<!--            and e.entry_time =#{emp.entryTime}-->
+<!--        </if>-->
+<!--        <if test="emp.phone !=null and emp.phone!=''">-->
+<!--            and e.phone =#{emp.phone}-->
+<!--        </if>-->
+
+
+
+    </select>
+    <resultMap id="hiringMap" type="com.msr.msrpm.rm.entity.Employeehiring">
+        <id column="eid" property="id"></id>
+        <result column="ename" property="name"></result>
+        <result column="entry_time" property="entryTime"></result>
+        <result column="phone" property="phone"></result>
+
+        <association property="position" javaType="com.msr.msrpm.rm.entity.Position">
+            <!--    映射属性    -->
+            <result column="pname" property="name"></result>
+
+        </association>
+
+
+    </resultMap>
 
 </mapper>

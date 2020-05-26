@@ -17,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 /**
@@ -187,6 +189,45 @@ public class EmployeeController {
         return R.ok().data("states",states);
     }
 
+    @ApiOperation(value = "统计员工男女人数")
+    @GetMapping("gender")
+    public R getGenderCountOfEmp(){
+        List<Map<String, Object>> mapList = employeeService.getGenderCountOfEmp();
+        return  R.ok().data("items",mapList);
+    }
 
+    @ApiOperation(value = "统计各部门人数")
+    @GetMapping("department")
+    public R getDeCountOfEmp(){
+        List<Map<String, Object>> mapList = employeeService.getDeCountOfEmp();
+        return  R.ok().data("items",mapList);
+    }
+    @ApiOperation(value = "统计员工学历")
+    @GetMapping("degree")
+    public R getDegreeCountOfEmp(){
+        List<Map<String, Object>> mapList = employeeService.getDegreeCountOfEmp();
+        return  R.ok().data("items",mapList);
+    }
+
+    @ApiOperation(value = "统计员工职位")
+    @GetMapping("positionCount")
+    public R getPositionCountOfEmp(){
+        List<Map<String, Object>> mapList = employeeService.getPositionCountOfEmp();
+        return  R.ok().data("items",mapList);
+    }
+
+    @ApiOperation(value = "统计部门男女员工")
+    @GetMapping("depGender")
+    public R getGenderCountOfDepartment(){
+        List<Map<String, Object>> mapList = employeeService.getGenderCountOfDepartment();
+        return  R.ok().data("items",mapList);
+    }
+    //统计职位的男女人数
+    @ApiOperation(value = "统计员工职位男女")
+    @GetMapping("posGender")
+    public R getPositionGenderCountOfEmp(){
+        List<Map<String, Object>> mapList = employeeService.getPositionGenderCountOfEmp();
+        return  R.ok().data("items",mapList);
+    }
 }
 
