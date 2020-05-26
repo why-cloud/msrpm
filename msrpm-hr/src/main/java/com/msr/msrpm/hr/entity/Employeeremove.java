@@ -33,13 +33,22 @@ public class Employeeremove implements Serializable {
     @ApiModelProperty(value = "员工编号")
     private Integer eid;
 
+    @TableField(exist = false)
+    private String name = null;
+
     @ApiModelProperty(value = "调动后部门")
     //@TableField("afterDepId")
     private Integer afterDepId;
 
+    @TableField(exist = false)
+    private String afterDepName = null;
+
     @ApiModelProperty(value = "调动后职位")
    // @TableField("afterJobId")
     private Integer afterJobId;
+
+    @TableField(exist = false)
+    private String afterJobName = null;
 
     @ApiModelProperty(value = "调动日期")
     //@TableField("removeDate")
@@ -67,9 +76,13 @@ public class Employeeremove implements Serializable {
     //@TableField("beforeDepId")
     private Integer beforeDepId;
 
+    @TableField(exist = false)
+    private String beforeDepName = null;
+
     @ApiModelProperty(value = "调动前职位")
     //@TableField("beforeJobId")
     private Integer beforeJobId;
 
-
+    @TableField(exist = false)
+    private String beforeJobName = null;
 }

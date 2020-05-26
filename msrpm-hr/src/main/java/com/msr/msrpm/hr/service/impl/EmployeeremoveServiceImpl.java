@@ -10,6 +10,7 @@ import com.msr.msrpm.hr.service.EmployeeremoveService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,7 +29,26 @@ public class EmployeeremoveServiceImpl extends ServiceImpl<EmployeeremoveMapper,
                 new Query<Employeeremove>().getPage(params),
                 new QueryWrapper<Employeeremove>()
         );
-
+        for(int i = 0;i<page.getRecords().size();i++){
+            Employeeremove employeeremove = page.getRecords().get(i);
+            employeeremove.setName(baseMapper.getNameById(employeeremove.getId()));
+            employeeremove.setAfterDepName(baseMapper.getDepNameById(employeeremove.getAfterDepId()));
+            employeeremove.setAfterJobName(baseMapper.getJobNameById(employeeremove.getAfterJobId()));
+            employeeremove.setBeforeDepName(baseMapper.getDepNameById(employeeremove.getBeforeDepId()));
+            employeeremove.setBeforeJobName(baseMapper.getJobNameById(employeeremove.getBeforeJobId()));
+        }
         return new PageUtils(page);
     }
+
+    @Override
+    public Map<Integer,String> getDepList() {
+        return baseMapper.getAllDepName();
+    }
+
+    @Override
+    public Map<Integer,String> getJobList() {
+        return baseMapper.getAllJobName();
+    }
+
+
 }
