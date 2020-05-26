@@ -36,6 +36,9 @@ public class Employcheck implements Serializable {
 	@TableField(exist = false)
 	private String name = null;
 
+	@TableField(exist = false)
+	private String DepName = null;
+
 	@ApiModelProperty(value = "本月天数")
 	private Integer daysMonth;
 

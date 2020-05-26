@@ -2,8 +2,10 @@ package com.msr.msrpm.hr.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.msr.common.utils.PageUtils;
+import com.msr.msrpm.hr.entity.Department;
 import com.msr.msrpm.hr.entity.Employcheck;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,5 +17,6 @@ import java.util.Map;
  */
 public interface EmploycheckService extends IService<Employcheck> {
     PageUtils queryPage(Map<String, Object> params);
+    //List<Department> getDepList();
 }
 

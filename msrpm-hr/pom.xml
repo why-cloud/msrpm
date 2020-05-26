@@ -20,6 +20,11 @@
     </properties>
 
     <dependencies>
+<!--        <dependency>-->
+<!--            <groupId>com.msr.msrpm</groupId>-->
+<!--            <artifactId>msrpm-ei</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
         <!--依赖msrshop-common工程 -->
         <dependency>
             <groupId>com.msr.msrpm</groupId>
