@@ -32,6 +32,7 @@ import java.util.List;
 public class EmployeehiringController {
     @Autowired
     EmployeehiringService employeehiringService;
+
     @ApiOperation(value = "分页多表")
     @GetMapping("/{page}/{size}")
     public R getAuditionPosition(
@@ -44,10 +45,8 @@ public class EmployeehiringController {
 
              HiringQuery hiringQuery
             ) {
-
-
         Page<Employeehiring>  pageParam= employeehiringService.getEmployeeHiring(new Page<>(page, size),hiringQuery);
-        //employeehiringService.hiringQuery(pageParam,hiringQuery);
+
         List<Employeehiring> records = pageParam.getRecords();
         long total = pageParam.getTotal();
 
@@ -90,7 +89,7 @@ public class EmployeehiringController {
             @PathVariable String id){
 
         Employeehiring employeehiring = employeehiringService.getById(id);
-        return R.ok().data("audition", employeehiring);
+        return R.ok().data("employeehiring", employeehiring);
     }
 
     @ApiOperation(value = "根据ID修改录用人员")
