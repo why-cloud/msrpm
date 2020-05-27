@@ -1,11 +1,15 @@
 package com.msr.msrpm.es.controller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.msr.common.utils.R;
+import com.msr.msrpm.es.EmployeeQuery;
+import com.msr.msrpm.es.EmpsalaryQuery;
 import com.msr.msrpm.es.entity.Employee;
 import com.msr.msrpm.es.entity.Empsalary;
 import com.msr.msrpm.es.service.EmployeeService;
 import com.msr.msrpm.es.service.EmpsalaryService;
+import com.msr.msrpm.es.vo.SalarySobVo;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +45,35 @@ public class EmployeeController {
         //Employee employee = employeeService.getById(id);
         return R.ok().data("employee",employee);
     }
+
+
+    @ApiOperation(value = "多表分页查询")
+    @GetMapping("{page}/{limit}")
+    public R getName(
+            @ApiParam(name = "page", value = "当前页码", required = true)
+            @PathVariable Long page,
+
+            @ApiParam(name = "limit", value = "每页记录数", required = true)
+            @PathVariable Long limit,
+
+            @ApiParam(name = "employeeQuery", value = "查询对象", required = false)
+                    EmployeeQuery employeeQuery
+
+    ){
+
+
+        Page<SalarySobVo> pageParam = employeeService.getName(new Page<>(page, limit),employeeQuery);
+
+//        empsalaryService.pageQuery(pageParam,empsalaryQuery);
+
+        List<SalarySobVo> records = pageParam.getRecords();
+
+        long total = pageParam.getTotal();
+        return  R.ok().data("total", total).data("rows", records);
+
+
+    }
+
 
     /*
     * @ApiOperation(value = "根据用户信息查询")

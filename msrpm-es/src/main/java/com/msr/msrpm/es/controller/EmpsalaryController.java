@@ -89,15 +89,17 @@ public class EmpsalaryController {
 
     ){
 
-       // Page<Empsalary> pageParam = new Page<>(page, limit);
-        Page<SalarySobVo> pageParam = empsalaryService.getSalarySobVo(new Page<>(page, limit));
 
-        empsalaryService.pageQuery(pageParam,empsalaryQuery);
+        Page<SalarySobVo> pageParam = empsalaryService.getSalarySobVo(new Page<>(page, limit),empsalaryQuery);
+
+//        empsalaryService.pageQuery(pageParam,empsalaryQuery);
 
         List<SalarySobVo> records = pageParam.getRecords();
 
         long total = pageParam.getTotal();
         return  R.ok().data("total", total).data("rows", records);
+
+
     }
 
 

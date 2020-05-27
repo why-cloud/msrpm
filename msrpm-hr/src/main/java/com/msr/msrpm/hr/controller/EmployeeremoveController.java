@@ -1,6 +1,7 @@
 package com.msr.msrpm.hr.controller;
 
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.msr.common.utils.PageUtils;
 import com.msr.common.utils.R;
 import com.msr.common.utils.R1;
@@ -31,6 +32,8 @@ import java.util.Map;
 public class EmployeeremoveController {
     @Autowired
     private EmployeeremoveService employeeremoveService;
+//    @Autowired
+//    private DepartmentService departmentService;
 
     /**
      * 列表
@@ -42,8 +45,21 @@ public class EmployeeremoveController {
         return R1.ok().put("page", page);
         //put
     }
-
-
+//    @ApiOperation(value = "所有部门列表")
+//    @GetMapping("/deps")
+//    public R depsList() {
+//        List<Department> departments = departmentService.list(null);
+//        return R.ok().data("departments",departments);
+//    }
+    @RequestMapping("/deps")
+    public R1 listDep(){
+        System.out.println(employeeremoveService.getDepList());
+        return R1.ok().put("dep",employeeremoveService.getDepList());
+    }
+    @RequestMapping("/jobs")
+    public R1 listJob(){
+        return R1.ok().put("job",employeeremoveService.getJobList());
+    }
     /**
      * 信息
      */

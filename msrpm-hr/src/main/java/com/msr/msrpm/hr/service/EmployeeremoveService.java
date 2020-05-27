@@ -1,9 +1,12 @@
 package com.msr.msrpm.hr.service;
 
 import com.msr.common.utils.PageUtils;
+import com.msr.msrpm.hr.entity.Department;
 import com.msr.msrpm.hr.entity.Employeeremove;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.msr.msrpm.hr.entity.Joblevel;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,4 +19,6 @@ import java.util.Map;
  */
 public interface EmployeeremoveService extends IService<Employeeremove> {
     PageUtils queryPage(Map<String, Object> params);
+    List<Department> getDepList();
+    List<Joblevel> getJobList();
 }
