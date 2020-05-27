@@ -41,6 +41,9 @@ public class Employeeec implements Serializable {
     //@TableField("departmentId")
     private Integer departmentId;
 
+    @TableField(exist = false)
+    private String depName = null;
+
     @ApiModelProperty(value = "奖罚日期")
     //@TableField("ecDate")
     private Date ecDate;
@@ -56,6 +59,9 @@ public class Employeeec implements Serializable {
     @ApiModelProperty(value = "奖罚类别，0：奖，1：罚")
    // @TableField("ecType")
     private Integer ecType;
+
+    @TableField(exist = false)
+    private String type = null;
 
     @ApiModelProperty(value = "备注")
     private String remark;

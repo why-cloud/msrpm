@@ -27,7 +27,11 @@ import java.util.Map;
 public class EmployeeecController {
     @Autowired
     private EmployeeecService employeeecService;
-
+    @RequestMapping("/deps")
+    public R1 listDep(){
+        System.out.println(employeeecService.getDepList());
+        return R1.ok().put("dep",employeeecService.getDepList());
+    }
     /**
      * 列表
      */

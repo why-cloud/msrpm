@@ -41,6 +41,9 @@ public class Employeetrain implements Serializable {
     //@TableField("departmentId")
     private Integer departmentId;
 
+    @TableField(exist = false)
+    private String depName = null;
+
     @ApiModelProperty(value = "培训日期")
     //@TableField("trainDate")
     private Date trainDate;

@@ -27,7 +27,11 @@ import java.util.Map;
 public class EmployeetrainController {
     @Autowired
     private EmployeetrainService employeetrainService;
-
+    @RequestMapping("/deps")
+    public R1 listDep(){
+        System.out.println(employeetrainService.getDepList());
+        return R1.ok().put("dep",employeetrainService.getDepList());
+    }
     /**
      * 列表
      */

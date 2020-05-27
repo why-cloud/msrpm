@@ -96,9 +96,9 @@ public class EmployeeremoveController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("hr:employeeremove:delete")
-    public R delete(@RequestBody Integer[] ids){
+    public R1 delete(@RequestBody Integer[] ids){
         employeeremoveService.removeByIds(Arrays.asList(ids));
-        return R.ok();
+        return R1.ok();
     }
 
 //    @ApiOperation(value = "员工调动信息")
