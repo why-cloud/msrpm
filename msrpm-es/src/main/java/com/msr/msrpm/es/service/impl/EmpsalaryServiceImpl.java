@@ -67,10 +67,10 @@ public class EmpsalaryServiceImpl extends ServiceImpl<EmpsalaryMapper, Empsalary
 @Autowired
 EmpsalaryMapper empsalaryMapper;
 
-    @Override
-    public Page<SalarySobVo> getSalarySobVo(Page<SalarySobVo> page) {
-        return page.setRecords(this.empsalaryMapper.getSalarySobVo(page));
-    }
+//    @Override
+//    public Page<SalarySobVo> getSalarySobVo(Page<SalarySobVo> page) {
+//        return page.setRecords(this.empsalaryMapper.getSalarySobVo(page));
+//    }
 
     @Override
     public void updateEmpsalaryInfoById(Empsalary empsalary) {
@@ -84,38 +84,11 @@ EmpsalaryMapper empsalaryMapper;
     }
 
     @Override
-    public void pageQuery(Page<SalarySobVo> pageParam, EmpsalaryQuery empsalaryQuery) {
-        QueryWrapper<SalarySobVo> queryWrapper = new QueryWrapper<>();
-        queryWrapper.orderByAsc("id");
-
-        if (empsalaryQuery == null){
-            baseMapper.selectPage(pageParam, queryWrapper);
-            return;
-        }
-
-        String name = empsalaryQuery.getName();
-//        Integer id = empsalaryQuery.getId();
-//        String begin = empsalaryQuery.getBegin();
-//        String end = empsalaryQuery.getEnd();
-
-//        if (!StringUtils.isEmpty(name)) {
-//            queryWrapper.like("name", name);
-//        }
-//
-//        if (!StringUtils.isEmpty(id) ) {
-//            queryWrapper.eq("id", id);
-//        }
-//
-//        if (!StringUtils.isEmpty(begin)) {
-//            queryWrapper.ge("gmt_create", begin);
-//        }
-//
-//        if (!StringUtils.isEmpty(end)) {
-//            queryWrapper.le("gmt_create", end);
-//        }
-
-        baseMapper.selectPage(pageParam, queryWrapper);
+    public Page<SalarySobVo> getSalarySobVo(Page<SalarySobVo> page, EmpsalaryQuery empsalaryQuery) {
+        return page.setRecords(this.empsalaryMapper.getSalarySobVo(page,empsalaryQuery));
     }
+
+
 
 
 //    @Override

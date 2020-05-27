@@ -2,11 +2,13 @@ package com.msr.msrpm.es.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
 
 import java.io.Serializable;
 import java.util.Date;
@@ -53,10 +55,12 @@ public class Salary implements Serializable {
 
     @ApiModelProperty(value = "养老金比率")
     private Float pensionPer;
-    @ApiModelProperty(value = "启用时间",example = "2019-01-01 8:00:00")
-    @TableField(fill = FieldFill.INSERT)
+    @ApiModelProperty(value = "启用时间")
+    //@TableField(fill = FieldFill.INSERT)
+    //@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    //@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private Date createDate;
-
+   // private String createDate;
     @ApiModelProperty(value = "医疗基数")
     private Integer medicalBase;
 
