@@ -18,26 +18,32 @@ FROM
 WHERE
 
  es.eid=e.id AND es.sid=s.id AND e.is_deleted=0 AND s.is_deleted=0 AND e.departmentId=d.`id`
+
+
+        <if test="empsalaryQuery.name !=null and empsalaryQuery.name!=''">
+            and e.name like concat('%',#{empsalaryQuery.name},'%')
+        </if>
+
     </select>
 
-    <select id="selectPage" resultMap="Map01">
-SELECT
-  es.id,
-  e.name ename,
-  e.workID,
-  e.email,
-  e.phone,
-  d.name dname,
-  s.name sname
+<!--    <select id="selectPage" resultMap="Map01">-->
+<!--SELECT-->
+<!--  es.id,-->
+<!--  e.name ename,-->
+<!--  e.workID,-->
+<!--  e.email,-->
+<!--  e.phone,-->
+<!--  d.name dname,-->
+<!--  s.name sname-->
 
-FROM
+<!--FROM-->
 
- empsalary es,employee e,salary s,department d
+<!-- empsalary es,employee e,salary s,department d-->
 
-WHERE
+<!--WHERE-->
 
- es.eid=e.id AND es.sid=s.id AND e.is_deleted=0 AND s.is_deleted=0 AND e.departmentId=d.`id` and e.id= #{id}
-    </select>
+<!-- es.eid=e.id AND es.sid=s.id AND e.is_deleted=0 AND s.is_deleted=0 AND e.departmentId=d.`id` and e.id= #{id}-->
+<!--    </select>-->
 
 
     <resultMap id="Map" type="com.msr.msrpm.es.vo.SalarySobVo">
@@ -45,10 +51,10 @@ WHERE
         <id column="id" property="id"/>
 
         <association property="employee" javaType="com.msr.msrpm.es.entity.Employee">
-            <result column="ename" property="name"/>
-            <result column="workID" property="workID"/>
-            <result column="email" property="email"/>
-            <result column="phone" property="phone"/>
+            <result column="ename" property="name" jdbcType="VARCHAR"/>
+            <result column="workID" property="workID" jdbcType="VARCHAR"/>
+            <result column="email" property="email" jdbcType="VARCHAR"/>
+            <result column="phone" property="phone" jdbcType="VARCHAR"/>
         </association>
 
         <association property="department" javaType="com.msr.msrpm.es.entity.Department">
@@ -60,30 +66,31 @@ WHERE
         </association>
 
 
-    </resultMap>
-
-
-    <resultMap id="Map01" type="com.msr.msrpm.es.vo.SalarySobVo">
-
-        <id column="id" property="id"/>
-
-        <association property="employee" javaType="com.msr.msrpm.es.entity.Employee">
-            <result column="ename" property="name"/>
-            <result column="workID" property="workID"/>
-            <result column="email" property="email"/>
-            <result column="phone" property="phone"/>
-        </association>
-
-        <association property="department" javaType="com.msr.msrpm.es.entity.Department">
-            <result column="dname" property="name"/>
-        </association>
-
-        <association property="salary" javaType="com.msr.msrpm.es.entity.Salary">
-            <result column="sname" property="name"/>
-        </association>
-
 
     </resultMap>
+
+
+<!--    <resultMap id="Map01" type="com.msr.msrpm.es.vo.SalarySobVo">-->
+
+<!--        <id column="id" property="id"/>-->
+
+<!--        <association property="employee" javaType="com.msr.msrpm.es.entity.Employee">-->
+<!--            <result column="ename" property="name"/>-->
+<!--            <result column="workID" property="workID"/>-->
+<!--            <result column="email" property="email"/>-->
+<!--            <result column="phone" property="phone"/>-->
+<!--        </association>-->
+
+<!--        <association property="department" javaType="com.msr.msrpm.es.entity.Department">-->
+<!--            <result column="dname" property="name"/>-->
+<!--        </association>-->
+
+<!--        <association property="salary" javaType="com.msr.msrpm.es.entity.Salary">-->
+<!--            <result column="sname" property="name"/>-->
+<!--        </association>-->
+
+
+<!--    </resultMap>-->
 
 
 

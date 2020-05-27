@@ -22,15 +22,12 @@ public interface EmpsalaryService extends IService<Empsalary> {
 
    // void pageQuery(Page<Empsalary> pageParam, EmpsalaryQuery empsalaryQuery);
 
-    Page<SalarySobVo> getSalarySobVo(Page<SalarySobVo> page);
+    //Page<SalarySobVo> getSalarySobVo(Page<SalarySobVo> page EmpsalaryQuery empsalaryQuery);
 
     void updateEmpsalaryInfoById(Empsalary empsalary);
 
-    void pageQuery(Page<SalarySobVo> pageParam, EmpsalaryQuery empsalaryQuery);
+    Page<SalarySobVo> getSalarySobVo(Page<SalarySobVo> page, EmpsalaryQuery empsalaryQuery);
 
-    //Empsalary getByName(String );
-
-    //SalarySobVo getSalarySobVoById(Integer id);
 
     //List<SalarySobVo> getSalarySobVo(Page<SalarySobVo> page);
 

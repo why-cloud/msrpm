@@ -1,11 +1,14 @@
 package com.msr.msrpm.es.service.impl;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.msr.msrpm.es.EmployeeQuery;
 import com.msr.msrpm.es.entity.Employee;
 import com.msr.msrpm.es.entity.Empsalary;
 import com.msr.msrpm.es.mapper.EmployeeMapper;
 import com.msr.msrpm.es.mapper.EmpsalaryMapper;
 import com.msr.msrpm.es.service.EmployeeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.msr.msrpm.es.vo.SalarySobVo;
 import com.msr.servicebase.exception.MSRException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +37,11 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
 public Employee getByName(String name) {
     return employeeMapper.getByName(name);
 }
+
+    @Override
+    public Page<SalarySobVo> getName(Page<SalarySobVo> page, EmployeeQuery employeeQuery) {
+        return page.setRecords(this.employeeMapper.getName(page,employeeQuery));
+    }
 
     /*@Override
     public List<User> getUserAndAddressAndOrder() {

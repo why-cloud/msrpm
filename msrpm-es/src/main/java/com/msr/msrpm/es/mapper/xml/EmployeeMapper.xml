@@ -20,6 +20,37 @@ WHERE
  es.eid=e.id AND es.sid=s.id AND e.is_deleted=0 AND s.is_deleted=0 AND e.departmentId=d.`id` and e.name= #{name,jdbcType=VARCHAR}
     </select>
 
+
+
+    <select id="getName" resultMap="Map01">
+        SELECT
+        es.id,
+        e.name ename,
+        e.workID,
+        e.email,
+        e.phone,
+        d.name dname,
+        s.name sname
+
+        FROM
+
+        empsalary es,employee e,salary s,department d
+
+        WHERE
+
+        es.eid=e.id AND es.sid=s.id AND e.is_deleted=0 AND s.is_deleted=0 AND e.departmentId=d.`id`
+
+
+        <if test="employeeQuery.name !=null and employeeQuery.name!=''">
+
+            and e.name= #{employeeQuery.name,jdbcType=VARCHAR}
+        </if>
+
+    </select>
+
+
+
+
     <resultMap id="Map" type="com.msr.msrpm.es.entity.Employee">
 
         <id column="id" property="id"/>
@@ -44,5 +75,35 @@ WHERE
 
 
     </resultMap>
+
+
+    <resultMap id="Map01" type="com.msr.msrpm.es.vo.SalarySobVo">
+
+        <id column="id" property="id"/>
+
+        <association property="employee" javaType="com.msr.msrpm.es.entity.Employee">
+            <result column="ename" property="name" jdbcType="VARCHAR"/>
+            <result column="workID" property="workID" jdbcType="VARCHAR"/>
+            <result column="email" property="email" jdbcType="VARCHAR"/>
+            <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        </association>
+
+        <association property="department" javaType="com.msr.msrpm.es.entity.Department">
+            <result column="dname" property="name"/>
+        </association>
+
+        <association property="salary" javaType="com.msr.msrpm.es.entity.Salary">
+            <result column="sname" property="name"/>
+        </association>
+
+
+
+    </resultMap>
+
+
+
+
+
+
 
 </mapper>

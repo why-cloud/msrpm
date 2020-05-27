@@ -1,7 +1,7 @@
 spring:
 datasource:
   username: root
-  password: 123
+  password: a62134787
   url: jdbc:mysql://localhost:3306/msr_pm
   driver-class-name: com.mysql.cj.jdbc.Driver
 jackson:
@@ -19,4 +19,4 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 server:
-  port: 7001
+  port: 5101
