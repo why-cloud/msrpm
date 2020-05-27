@@ -40,10 +40,13 @@ public class TemperatureVo implements Serializable {
     @ApiModelProperty(value = "其他症状")
     @TableField("other_symptoms")
     private String otherSymptoms;
-
-    @ApiModelProperty(value = "创建时间")
-    @TableField(fill = FieldFill.INSERT)
-    private Date gmtCreate;
+//
+//    @ApiModelProperty(value = "创建时间")
+//    @TableField(fill = FieldFill.INSERT)
+//    private Date gmtCreate;
+    @ApiModelProperty(value = "更新时间")
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Date gmtModified;
 
     @TableField(exist = false) //不会与表中字段做映射
     private Department department;

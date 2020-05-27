@@ -20,7 +20,7 @@ SELECT
         <result column="is_unusual" property="isUnusual"></result>
 
         <result column="other_symptoms" property="otherSymptoms"></result>
-        <result column="gmt_create" property="gmtCreate"></result>
+        <result column="gmt_modified" property="gmtModified"></result>
 
 
         <association property="department" javaType="com.msr.msrpm.tm.entity.Department">
