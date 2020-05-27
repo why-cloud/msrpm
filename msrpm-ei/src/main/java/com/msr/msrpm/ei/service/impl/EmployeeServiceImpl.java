@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.msr.msrpm.ei.entity.Department;
 import com.msr.msrpm.ei.entity.Employee;
+import com.msr.msrpm.ei.entity.excel.EmployeeData;
 import com.msr.msrpm.ei.entity.vo.EmployeeInfoForm;
 import com.msr.msrpm.ei.listener.EmployeeListener;
 import com.msr.msrpm.ei.mapper.DepartmentMapper;
@@ -35,6 +36,25 @@ import java.util.Map;
 public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> implements EmployeeService {
     @Autowired(required = false)
     private DepartmentMapper departmentMapper;
+    @Autowired
+    private EmployeeMapper employeeMapper;
+    @Override
+    public List<Employee> exportemp(){
+        return employeeMapper.employeeinfo();
+    }
+
+        //添加课程分类
+        @Override
+        public void saveEmp(MultipartFile file, EmployeeService employeeService) {
+            try {
+                //文件输入流
+                InputStream in = file.getInputStream();
+                //调用方法进行读取
+                EasyExcel.read(in, Employee.class,new EmployeeListener(employeeService)).sheet().doRead();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
     @Override
     public void pageQuery(Page<Employee> pageParam, EmployeeQuery employeeQuery) {
         QueryWrapper<Employee> queryWrapper = new QueryWrapper<>();
@@ -58,9 +78,6 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
 
         baseMapper.selectPage(pageParam, queryWrapper);
     }
-    @Autowired
-    private EmployeeMapper employeeMapper;
-
     @Override
     public List<Employee> getAll(){
         return employeeMapper.getAll();

@@ -1,6 +1,6 @@
 package com.msr.msrpm.ei.entity.vo;
 
-import com.alibaba.excel.annotation.ExcelProperty;
+
 import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -100,6 +100,5 @@ public class EmployeeInfoForm implements Serializable {
 
     @ApiModelProperty(value = "工龄")
     private Integer workAge;
-
 
 }

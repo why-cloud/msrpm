@@ -47,4 +47,7 @@ public interface EmployeeMapper extends BaseMapper<Employee> {
             "SUM(CASE WHEN gender = '女' THEN 1 ELSE 0 END) AS woman,\n" +
             "count(*) value  FROM  employee,position where   employee.posId = position.id  group BY posId")
     List<Map<String, Object>> getPositionGenderCountOfEmp();
+
+    @Select("select * from employee")
+    public List<Employee> employeeinfo();
 }

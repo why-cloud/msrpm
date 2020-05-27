@@ -4,7 +4,9 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.msr.msrpm.ei.entity.Department;
 import com.msr.msrpm.ei.entity.Employee;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.msr.msrpm.ei.entity.excel.EmployeeData;
 import com.msr.msrpm.ei.query.EmployeeQuery;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import java.util.List;
@@ -24,6 +26,8 @@ public interface EmployeeService extends IService<Employee> {
  void pageQuery(Page<Employee> pageParam, EmployeeQuery employeeQuery);
  public List<Employee> getAll();
  public List<Department> getAllDep();
+ public List<Employee> exportemp();
+ void saveEmp(MultipartFile file, EmployeeService employeeService);
 
  /**
   * 统计员工男女人数 張家興

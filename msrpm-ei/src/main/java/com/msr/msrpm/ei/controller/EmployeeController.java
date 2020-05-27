@@ -1,21 +1,35 @@
 package com.msr.msrpm.ei.controller;
 
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.EasyExcelFactory;
+import com.alibaba.excel.ExcelWriter;
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.msr.common.utils.R;
 import com.msr.msrpm.ei.entity.*;
+import com.msr.msrpm.ei.entity.excel.EmployeeData;
+import com.msr.msrpm.ei.listener.EmployeeListener;
 import com.msr.msrpm.ei.query.EmployeeQuery;
 import com.msr.msrpm.ei.service.*;
 import io.swagger.annotations.Api;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.extern.java.Log;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -189,13 +203,14 @@ public class EmployeeController {
         return R.ok().data("states",states);
     }
 
+
+
     @ApiOperation(value = "统计员工男女人数")
     @GetMapping("gender")
     public R getGenderCountOfEmp(){
         List<Map<String, Object>> mapList = employeeService.getGenderCountOfEmp();
         return  R.ok().data("items",mapList);
     }
-
     @ApiOperation(value = "统计各部门人数")
     @GetMapping("department")
     public R getDeCountOfEmp(){
@@ -229,5 +244,60 @@ public class EmployeeController {
         List<Map<String, Object>> mapList = employeeService.getPositionGenderCountOfEmp();
         return  R.ok().data("items",mapList);
     }
+    // 导出
+    @ApiOperation(value = "导出Excel")
+    @GetMapping("/export")
+    public R list(HttpServletResponse response) {
+        List<Employee> list = employeeService.list(null);
+        System.out.println(list); // 拿到数据
+        SimpleDateFormat tempDate = new SimpleDateFormat("yyyyMMddHHmmss");
+        String datetime = tempDate.format(new java.util.Date());
+        String fileName = "C:\\Users\\admin\\Desktop\\" +datetime+ "员工资料.xlsx";
+        EasyExcel.write(fileName, Employee.class).sheet("写入方法一").doWrite(list);
+        return R.ok();
+    }
+    @ApiOperation(value = "Excel批量导入")
+    @PostMapping("addEmp")
+    public R addEmployee(MultipartFile file) {
+        //上传过来excel文件
+        employeeService.saveEmp(file, employeeService);
+        return R.ok();
+    }
+    // excel上传添加
+    @PostMapping("upload")
+    @ResponseBody
+    public String upload(MultipartFile file) throws IOException {
+        EasyExcel.read(file.getInputStream(), EmployeeData.class, new EmployeeListener(employeeService)).sheet().doRead();
+        return "success";
+    }
+
+    /*@GetMapping("download")
+    public void downloadFailedUsingJson(HttpServletResponse response) throws IOException {
+        // 这里注意 有同学反应使用swagger 会导致各种问题，请直接用浏览器或者用postman
+        try {
+            response.setContentType("application/vnd.ms-excel");
+            response.setCharacterEncoding("utf-8");
+            // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
+            String fileName = URLEncoder.encode("测试", "UTF-8");
+            response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
+            // 这里需要设置不关闭流
+            EasyExcel.write(response.getOutputStream(),EmployeeData.class).autoCloseStream(Boolean.FALSE).sheet("模板")
+                    .doWrite(data());
+        } catch (Exception e) {
+            // 重置response
+            response.reset();
+            response.setContentType("application/json");
+            response.setCharacterEncoding("utf-8");
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("status", "failure");
+            map.put("message", "下载文件失败" + e.getMessage());
+            response.getWriter().println(JSON.toJSONString(map));
+        }
+    }
+    private List data() {
+        List<Employee> list = employeeService.exportemp();
+        return list;
+    }*/
+
 }
 

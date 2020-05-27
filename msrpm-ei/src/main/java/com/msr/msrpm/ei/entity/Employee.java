@@ -3,13 +3,19 @@ package com.msr.msrpm.ei.entity;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.io.Serializable;
+import java.util.List;
+
+import com.msr.msrpm.ei.entity.excel.EmployeeData;
+import com.msr.msrpm.ei.service.EmployeeService;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * <p>
@@ -26,143 +32,148 @@ import lombok.experimental.Accessors;
 public class Employee implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @ExcelProperty(value="员工编号",index=0)
     @ApiModelProperty(value = "员工编号")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ExcelProperty(index = 0)
+    @ExcelProperty(value = "员工姓名",index = 1)
     @ApiModelProperty(value = "员工姓名")
     private String name;
 
-    @ExcelProperty(index = 2)
+    @ExcelProperty(value = "性别",index = 2)
     @ApiModelProperty(value = "性别")
     private String gender;
 
-    @ExcelProperty(index = 3)
+    @ExcelProperty(value = "出生日期",index = 3)
     @ApiModelProperty(value = "出生日期")
     private String birthday;
 
-    @ExcelProperty(index = 4)
+    @ExcelProperty(value = "身份证号",index = 4)
     @ApiModelProperty(value = "身份证号")
     @TableField("idCard")
     private String idCard;
 
-    @ExcelProperty(index = 5)
+    @ExcelProperty(value = "婚姻状况",index = 5)
     @ApiModelProperty(value = "婚姻状况")
     private String wedlock;
 
-    @ExcelProperty(index = 6)
+    @ExcelProperty(value = "民族",index = 6)
     @ApiModelProperty(value = "民族")
     @TableField("nationId")
     private Integer nationId;
 
-    @ExcelProperty(index = 7)
+    @ExcelProperty(value = "籍贯",index = 7)
     @ApiModelProperty(value = "籍贯")
     @TableField("nativePlace")
     private String nativePlace;
 
-    @ExcelProperty(index = 8)
+    @ExcelProperty(value = "政治面貌",index = 8)
     @ApiModelProperty(value = "政治面貌")
     @TableField("politicId")
     private Integer politicId;
 
-    @ExcelProperty(index = 9)
+    @ExcelProperty(value = "邮箱",index = 9)
     @ApiModelProperty(value = "邮箱")
     private String email;
 
-    @ExcelProperty(index = 10)
+    @ExcelProperty(value = "电话号码",index = 10)
     @ApiModelProperty(value = "电话号码")
     private String phone;
 
-    @ExcelProperty(index = 11)
+    @ExcelProperty(value = "联系地址",index = 11)
     @ApiModelProperty(value = "联系地址")
     private String address;
 
-    @ExcelProperty(index = 12)
+    @ExcelProperty(value = "所属部门",index = 12)
     @ApiModelProperty(value = "所属部门")
     @TableField("departmentId")
     private Integer departmentId;
 
-    @ExcelProperty(index = 13)
+    @ExcelProperty(value = "职称ID",index = 13)
     @ApiModelProperty(value = "职称ID")
     @TableField("jobLevelId")
     private Integer jobLevelId;
 
-    @ExcelProperty(index = 14)
+    @ExcelProperty(value = "职位ID",index = 14)
     @ApiModelProperty(value = "职位ID")
     @TableField("posId")
     private Integer posId;
 
-    @ExcelProperty(index = 15)
+    @ExcelProperty(value = "合同形式",index = 15)
     @ApiModelProperty(value = "合同形式")
     @TableField("formId")
     private Integer formId;
 
-    @ExcelProperty(index = 16)
+    @ExcelProperty(value = "最高学历",index = 16)
     @ApiModelProperty(value = "最高学历")
     @TableField("degreeId")
     private Integer degreeId;
 
-    @ExcelProperty(index = 17)
+    @ExcelProperty(value = "所属专业",index = 17)
     @ApiModelProperty(value = "所属专业")
     private String specialty;
 
-    @ExcelProperty(index = 18)
+    @ExcelProperty(value = "毕业院校",index = 18)
     @ApiModelProperty(value = "毕业院校")
     private String school;
 
+    @ExcelProperty(value = "入职日期",index = 19)
     @ApiModelProperty(value = "入职日期")
     @TableField("beginDate")
-    @ExcelProperty(index = 19)
     private String beginDate;
 
+    @ExcelProperty(value = "在职状态",index = 20)
     @ApiModelProperty(value = "在职状态")
-    @TableField("stateIId")
-    @ExcelProperty(index = 20)
+    @TableField(value = "stateIId" )
     private Integer stateIId;
 
-    @ExcelProperty(index = 1)
+    @ExcelProperty(value = "工号",index = 21)
     @ApiModelProperty(value = "工号")
     @TableField("workID")
     private String workID;
 
-    @ExcelProperty(index = 21)
+    @ExcelProperty(value = "合同期限",index = 22)
     @ApiModelProperty(value = "合同期限")
     @TableField("contractTerm")
     private Double contractTerm;
 
-    @ExcelProperty(index = 22)
+    @ExcelProperty(value = "转正日期",index = 23)
     @ApiModelProperty(value = "转正日期")
     @TableField("conversionTime")
     private String conversionTime;
 
-    @ExcelProperty(index = 23)
+    @ExcelProperty(value = "离职日期",index = 24)
     @ApiModelProperty(value = "离职日期")
     @TableField("notWorkDate")
     private String notWorkDate;
 
-    @ExcelProperty(index = 24)
+    @ExcelProperty(value = "合同终止日期",index = 25)
+    @ApiModelProperty(value = "合同终止日期")
+    @TableField("endContract")
+    private String endContract;
+
+    @ExcelProperty(value = "合同起始日期",index = 26)
     @ApiModelProperty(value = "合同起始日期")
     @TableField("beginContract")
     private String beginContract;
 
-    @ExcelProperty(index = 25)
-    @ApiModelProperty(value = "合同终止日期")
-    @TableField("endContract")
-    private String endContract;
-    @ExcelProperty(index =26)
+    @ExcelProperty(value = "工龄",index =27)
     @ApiModelProperty(value = "工龄")
     @TableField("workAge")
     private Integer workAge;
 
+    @ExcelProperty(value = "是否删除",index =28)
     @ApiModelProperty(value = "逻辑删除 1（true）已删除， 0（false）未删除")
     @TableLogic
     private Boolean isDeleted;
 
+    @ExcelProperty(value = "创建时间",index =29)
     @ApiModelProperty(value = "创建时间")
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 
+    @ExcelProperty(value = "更新时间",index =30)
     @ApiModelProperty(value = "更新时间")
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date gmtModified;
@@ -190,4 +201,5 @@ public class Employee implements Serializable {
 
     @TableField(exist = false)
     private Workstate workstate;
+
 }
