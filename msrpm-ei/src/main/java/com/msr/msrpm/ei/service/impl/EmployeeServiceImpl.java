@@ -1,6 +1,7 @@
 package com.msr.msrpm.ei.service.impl;
 
 import com.alibaba.excel.EasyExcel;
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.msr.msrpm.ei.entity.Department;
@@ -14,6 +15,7 @@ import com.msr.msrpm.ei.query.EmployeeQuery;
 import com.msr.msrpm.ei.service.EmployeeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.msr.servicebase.exception.MSRException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -33,18 +36,20 @@ import java.util.Map;
  * @since 2020-05-18
  */
 @Service
+@Slf4j
 public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> implements EmployeeService {
     @Autowired(required = false)
     private DepartmentMapper departmentMapper;
     @Autowired
     private EmployeeMapper employeeMapper;
     @Override
-    public List<Employee> exportemp(){
-        return employeeMapper.employeeinfo();
+    public boolean saveData(List<Employee> employees) {
+        log.info("EmployeeService {}条数据，开始存储数据库！", employees.size());
+        log.info(JSON.toJSONString(employees));
+        log.info("UserService 存储数据库成功！");
+        return true;
     }
-
-        //添加课程分类
-        @Override
+    @Override
         public void saveEmp(MultipartFile file, EmployeeService employeeService) {
             try {
                 //文件输入流
@@ -55,6 +60,10 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
                 e.printStackTrace();
             }
         }
+    @Override
+    public List<Employee> exportemp(){
+        return employeeMapper.employeeinfo();
+    }
     @Override
     public void pageQuery(Page<Employee> pageParam, EmployeeQuery employeeQuery) {
         QueryWrapper<Employee> queryWrapper = new QueryWrapper<>();

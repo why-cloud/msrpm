@@ -11,6 +11,7 @@ import com.msr.msrpm.ei.entity.excel.EmployeeData;
 import com.msr.msrpm.ei.listener.EmployeeListener;
 import com.msr.msrpm.ei.query.EmployeeQuery;
 import com.msr.msrpm.ei.service.*;
+import com.msr.msrpm.ei.service.impl.EmployeeServiceImpl;
 import io.swagger.annotations.Api;
 
 import io.swagger.annotations.ApiOperation;
@@ -66,6 +67,7 @@ public class EmployeeController {
     private TiptopdegreeService tiptopdegreeService;
     @Autowired
     private WorkstateService workstateService;
+
 
 
     @ApiOperation(value = "所有员工资料")
@@ -253,10 +255,10 @@ public class EmployeeController {
         SimpleDateFormat tempDate = new SimpleDateFormat("yyyyMMddHHmmss");
         String datetime = tempDate.format(new java.util.Date());
         String fileName = "C:\\Users\\admin\\Desktop\\" +datetime+ "员工资料.xlsx";
-        EasyExcel.write(fileName, Employee.class).sheet("写入方法一").doWrite(list);
+        EasyExcel.write(fileName, Employee.class).sheet("员工列表").doWrite(list);
         return R.ok();
     }
-    @ApiOperation(value = "Excel批量导入")
+    @ApiOperation(value = "Excel导入")
     @PostMapping("addEmp")
     public R addEmployee(MultipartFile file) {
         //上传过来excel文件
@@ -267,7 +269,7 @@ public class EmployeeController {
     @PostMapping("upload")
     @ResponseBody
     public String upload(MultipartFile file) throws IOException {
-        EasyExcel.read(file.getInputStream(), EmployeeData.class, new EmployeeListener(employeeService)).sheet().doRead();
+        EasyExcel.read(file.getInputStream(), Employee.class, new EmployeeListener(employeeService)).sheet().doRead();
         return "success";
     }
 

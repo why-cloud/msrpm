@@ -32,7 +32,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Employee implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @ExcelProperty(value="员工编号",index=0)
+    @ExcelProperty(value="员工ID",index=0)
     @ApiModelProperty(value = "员工编号")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;

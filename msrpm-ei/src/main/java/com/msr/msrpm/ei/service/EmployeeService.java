@@ -6,6 +6,8 @@ import com.msr.msrpm.ei.entity.Employee;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.msr.msrpm.ei.entity.excel.EmployeeData;
 import com.msr.msrpm.ei.query.EmployeeQuery;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -21,13 +23,13 @@ import java.util.Map;
  * @author msr
  * @since 2020-05-18
  */
-
 public interface EmployeeService extends IService<Employee> {
  void pageQuery(Page<Employee> pageParam, EmployeeQuery employeeQuery);
  public List<Employee> getAll();
  public List<Department> getAllDep();
  public List<Employee> exportemp();
  void saveEmp(MultipartFile file, EmployeeService employeeService);
+ public boolean saveData(List<Employee> employees);
 
  /**
   * 统计员工男女人数 張家興

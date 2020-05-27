@@ -18,7 +18,7 @@ import java.util.List;
  * @author msr
  * @since 2020-05-18
  */
-@Service
+
 public interface DepartmentService extends IService<Department> {
    public List<Department> getAllDep();
 
