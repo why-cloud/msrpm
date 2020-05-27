@@ -3,11 +3,12 @@ package com.msr.msrpm.rm.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.msr.common.utils.R;
-import com.msr.msrpm.rm.entity.Audition;
+
 import com.msr.msrpm.rm.entity.Employeehiring;
+import com.msr.msrpm.rm.query.HiringQuery;
 import com.msr.msrpm.rm.service.EmployeehiringService;
-import com.msr.msrpm.rm.vo.AuditionPositionVo;
-import com.msr.msrpm.rm.vo.EmployeehiringVo;
+
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -31,8 +32,9 @@ import java.util.List;
 public class EmployeehiringController {
     @Autowired
     EmployeehiringService employeehiringService;
+
     @ApiOperation(value = "分页多表")
-    @GetMapping("/{page}/{size}/{employeehiringVo}")
+    @GetMapping("/{page}/{size}")
     public R getAuditionPosition(
 
             @ApiParam(name = "page", value = "当前页码", required = true)
@@ -41,12 +43,13 @@ public class EmployeehiringController {
             @ApiParam(name = "size", value = "每页记录数", required = true)
             @PathVariable Integer size,
 
-            @PathVariable EmployeehiringVo employeehiringVo
-    ) {
+             HiringQuery hiringQuery
+            ) {
+        Page<Employeehiring>  pageParam= employeehiringService.getEmployeeHiring(new Page<>(page, size),hiringQuery);
 
-        Page<EmployeehiringVo>  pageParam= employeehiringService.getEmployeeHiring(new Page<>(page, size),employeehiringVo);
-        List<EmployeehiringVo> records = pageParam.getRecords();
+        List<Employeehiring> records = pageParam.getRecords();
         long total = pageParam.getTotal();
+
         return  R.ok().data("total", total).data("rows", records);
     }
 
@@ -86,7 +89,7 @@ public class EmployeehiringController {
             @PathVariable String id){
 
         Employeehiring employeehiring = employeehiringService.getById(id);
-        return R.ok().data("audition", employeehiring);
+        return R.ok().data("employeehiring", employeehiring);
     }
 
     @ApiOperation(value = "根据ID修改录用人员")

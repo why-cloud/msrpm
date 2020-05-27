@@ -54,5 +54,8 @@ public class Employeehiring implements Serializable {
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date gmtModified;
 
+    @TableField(exist = false)
+    private Position position;
+
 
 }

@@ -7,6 +7,7 @@
         e.name ename,
         e.entry_time,
         e.phone,
+        e.posId,
         p.name pname
 
     from
@@ -14,27 +15,29 @@
     where
     e.posId=p.id AND e.is_deleted=0
 
-        <if test="emp.name !=null and emp.name!=''">
-            and ename like concat('%',#{emp.name},'%')
+       <if test="emp.name !=null and emp.name!=''">
+            and e.name like concat('%',#{emp.name},'%')
         </if>
-        <if test="emp.id !=null and emp.id!=''">
-            and eid = #{emp.id}
-        </if>
-        <if test="emp.entryTime !=null and emp.entryTime!=''">
-            and e.entry_time =#{emp.entryTime}
-        </if>
-        <if test="emp.phone !=null and emp.phone!=''">
-            and e.phone =#{emp.phone}
-        </if>
-
-
+<!--        <if test="emp.id !=null and emp.id!=''">-->
+<!--            and eid = #{emp.id}-->
+<!--        </if>-->
+<!--        <if test="emp.entryTime !=null and emp.entryTime!=''">-->
+<!--            and e.entry_time =#{emp.entryTime}-->
+<!--        </if>-->
+<!--        <if test="emp.phone !=null and emp.phone!=''">-->
+<!--        and e.phone =#{emp.phone}-->
+<!--    </if>-->
+<!--        <if test="emp.posId !=null and emp.posId!=''">-->
+<!--            and e.posId =#{emp.posId}-->
+<!--        </if>-->
 
     </select>
-    <resultMap id="hiringMap" type="com.msr.msrpm.rm.vo.EmployeehiringVo">
-        <id column="eid" property="id"></id>
-        <result column="ename" property="name"></result>
-        <result column="entry_time" property="entryTime"></result>
-        <result column="phone" property="phone"></result>
+    <resultMap id="hiringMap" type="com.msr.msrpm.rm.entity.Employeehiring">
+        <id column="eid" property="id" jdbcType="INTEGER"/>
+        <result column="ename" property="name" jdbcType="VARCHAR"></result>
+        <result column="entry_time" property="entryTime" jdbcType="DATE"></result>
+        <result column="phone" property="phone" jdbcType="VARCHAR"></result>
+        <result column="posId" property="posId" jdbcType="INTEGER"></result>
 
         <association property="position" javaType="com.msr.msrpm.rm.entity.Position">
             <!--    映射属性    -->

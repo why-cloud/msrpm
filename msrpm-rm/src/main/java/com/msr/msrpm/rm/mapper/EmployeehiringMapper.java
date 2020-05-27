@@ -3,7 +3,9 @@ package com.msr.msrpm.rm.mapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.msr.msrpm.rm.entity.Employeehiring;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.msr.msrpm.rm.vo.EmployeehiringVo;
+
+import com.msr.msrpm.rm.entity.Resume;
+import com.msr.msrpm.rm.query.HiringQuery;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -19,9 +21,6 @@ import java.util.List;
  */
 @Repository
 public interface EmployeehiringMapper extends BaseMapper<Employeehiring> {
-    List<EmployeehiringVo> getEmployeeHiring(@Param("page") Page<EmployeehiringVo> page, @Param("emp") EmployeehiringVo employeehiringVo);
-    //List<EmployeehiringVo> getEmployeeHiring(@Param("page") Long page, @Param("size") Integer size, @Param("emp") EmployeehiringVo employeehiringVo);
-    //@Param("page") Integer page, @Param("size") Integer size, @Param("emp") Employee employee
+    List<Employeehiring> getEmployeeHiring(Page<Employeehiring> page, @Param("emp")HiringQuery hiringQuery);
 
-    //List<EmployeehiringVo> getEmployeeHiring(Page<EmployeehiringVo> page);
 }
