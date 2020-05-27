@@ -4,7 +4,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.msr.common.utils.PageUtils;
 import com.msr.common.utils.Query;
+import com.msr.msrpm.hr.entity.Department;
 import com.msr.msrpm.hr.entity.Employeeremove;
+import com.msr.msrpm.hr.entity.Joblevel;
 import com.msr.msrpm.hr.mapper.EmployeeremoveMapper;
 import com.msr.msrpm.hr.service.EmployeeremoveService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -25,9 +27,12 @@ import java.util.Map;
 public class EmployeeremoveServiceImpl extends ServiceImpl<EmployeeremoveMapper, Employeeremove> implements EmployeeremoveService {
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
+        QueryWrapper<Employeeremove> queryWrapper = new QueryWrapper();
+        Object reason = params.get("key");
+        queryWrapper.like("reason",reason);
         IPage<Employeeremove> page = this.page(
                 new Query<Employeeremove>().getPage(params),
-                new QueryWrapper<Employeeremove>()
+                queryWrapper
         );
         for(int i = 0;i<page.getRecords().size();i++){
             Employeeremove employeeremove = page.getRecords().get(i);
@@ -41,12 +46,12 @@ public class EmployeeremoveServiceImpl extends ServiceImpl<EmployeeremoveMapper,
     }
 
     @Override
-    public Map<Integer,String> getDepList() {
+    public List<Department> getDepList() {
         return baseMapper.getAllDepName();
     }
 
     @Override
-    public Map<Integer,String> getJobList() {
+    public List<Joblevel> getJobList() {
         return baseMapper.getAllJobName();
     }
 

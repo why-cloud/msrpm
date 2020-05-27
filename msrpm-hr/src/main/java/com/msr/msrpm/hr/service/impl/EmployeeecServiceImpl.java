@@ -25,9 +25,12 @@ import java.util.Map;
 public class EmployeeecServiceImpl extends ServiceImpl<EmployeeecMapper, Employeeec> implements EmployeeecService {
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
+        QueryWrapper<Employeeec> queryWrapper = new QueryWrapper();
+        Object c = params.get("key");
+        queryWrapper.like("ec_reason",c);
         IPage<Employeeec> page = this.page(
                 new Query<Employeeec>().getPage(params),
-                new QueryWrapper<Employeeec>()
+                queryWrapper
 
         );
         for(int i = 0;i<page.getRecords().size();i++){

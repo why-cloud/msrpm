@@ -1,7 +1,9 @@
 package com.msr.msrpm.hr.mapper;
 
+import com.msr.msrpm.hr.entity.Department;
 import com.msr.msrpm.hr.entity.Employeeremove;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.msr.msrpm.hr.entity.Joblevel;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -25,9 +27,9 @@ public interface EmployeeremoveMapper extends BaseMapper<Employeeremove> {
     @Select("select name from joblevel where id = #{jobId}")
     public String getJobNameById(Integer jobId);
 
-    @Select("select id,name from department")
-    public Map<Integer,String> getAllDepName();
+    @Select("select * from department")
+    public List<Department> getAllDepName();
 
-    @Select("select id,name from joblevel")
-    public Map<Integer,String> getAllJobName();
+    @Select("select * from joblevel")
+    public List<Joblevel> getAllJobName();
 }

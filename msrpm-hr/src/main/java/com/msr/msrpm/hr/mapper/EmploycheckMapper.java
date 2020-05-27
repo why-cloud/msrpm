@@ -1,8 +1,11 @@
 package com.msr.msrpm.hr.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.msr.msrpm.hr.entity.Department;
 import com.msr.msrpm.hr.entity.Employcheck;
 import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 
 /**
@@ -16,4 +19,8 @@ import org.apache.ibatis.annotations.Select;
 public interface EmploycheckMapper extends BaseMapper<Employcheck> {
     @Select("select name from employee where id = #{Id}")
     public String getNameById(Integer Id);
+//    @Select("select name from department where id = #{depId}")
+//    public String getDepNameById(Integer depId);
+//    @Select("select * from department")
+//    public List<Department> getAllDepName();
 }

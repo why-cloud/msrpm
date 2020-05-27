@@ -32,6 +32,8 @@ import java.util.Map;
 public class EmployeeremoveController {
     @Autowired
     private EmployeeremoveService employeeremoveService;
+//    @Autowired
+//    private DepartmentService departmentService;
 
     /**
      * 列表
@@ -43,14 +45,19 @@ public class EmployeeremoveController {
         return R1.ok().put("page", page);
         //put
     }
-    @RequestMapping("/list/dep")
+//    @ApiOperation(value = "所有部门列表")
+//    @GetMapping("/deps")
+//    public R depsList() {
+//        List<Department> departments = departmentService.list(null);
+//        return R.ok().data("departments",departments);
+//    }
+    @RequestMapping("/deps")
     public R1 listDep(){
-        //employeeremoveService.getDepList();
+        System.out.println(employeeremoveService.getDepList());
         return R1.ok().put("dep",employeeremoveService.getDepList());
     }
-    @RequestMapping("/list/job")
+    @RequestMapping("/jobs")
     public R1 listJob(){
-        //employeeremoveService.getDepList();
         return R1.ok().put("job",employeeremoveService.getJobList());
     }
     /**
