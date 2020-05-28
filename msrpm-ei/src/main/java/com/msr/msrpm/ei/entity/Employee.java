@@ -2,20 +2,12 @@ package com.msr.msrpm.ei.entity;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.*;
-
-import java.util.ArrayList;
 import java.util.Date;
 import java.io.Serializable;
-import java.util.List;
-
-import com.msr.msrpm.ei.entity.excel.EmployeeData;
-import com.msr.msrpm.ei.service.EmployeeService;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * <p>
@@ -25,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author msr
  * @since 2020-05-18
  */
-@Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value="Employee对象", description="Employee entity")
@@ -202,4 +193,319 @@ public class Employee implements Serializable {
     @TableField(exist = false)
     private Workstate workstate;
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    public String getWedlock() {
+        return wedlock;
+    }
+
+    public void setWedlock(String wedlock) {
+        this.wedlock = wedlock;
+    }
+
+    public Integer getNationId() {
+        return nationId;
+    }
+
+    public void setNationId(Integer nationId) {
+        this.nationId = nationId;
+    }
+
+    public String getNativePlace() {
+        return nativePlace;
+    }
+
+    public void setNativePlace(String nativePlace) {
+        this.nativePlace = nativePlace;
+    }
+
+    public Integer getPoliticId() {
+        return politicId;
+    }
+
+    public void setPoliticId(Integer politicId) {
+        this.politicId = politicId;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Integer getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public Integer getJobLevelId() {
+        return jobLevelId;
+    }
+
+    public void setJobLevelId(Integer jobLevelId) {
+        this.jobLevelId = jobLevelId;
+    }
+
+    public Integer getPosId() {
+        return posId;
+    }
+
+    public void setPosId(Integer posId) {
+        this.posId = posId;
+    }
+
+    public Integer getFormId() {
+        return formId;
+    }
+
+    public void setFormId(Integer formId) {
+        this.formId = formId;
+    }
+
+    public Integer getDegreeId() {
+        return degreeId;
+    }
+
+    public void setDegreeId(Integer degreeId) {
+        this.degreeId = degreeId;
+    }
+
+    public String getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(String specialty) {
+        this.specialty = specialty;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public String getBeginDate() {
+        return beginDate;
+    }
+
+    public void setBeginDate(String beginDate) {
+        this.beginDate = beginDate;
+    }
+
+    public Integer getStateIId() {
+        return stateIId;
+    }
+
+    public void setStateIId(Integer stateIId) {
+        this.stateIId = stateIId;
+    }
+
+    public String getWorkID() {
+        return workID;
+    }
+
+    public void setWorkID(String workID) {
+        this.workID = workID;
+    }
+
+    public Double getContractTerm() {
+        return contractTerm;
+    }
+
+    public void setContractTerm(Double contractTerm) {
+        this.contractTerm = contractTerm;
+    }
+
+    public String getConversionTime() {
+        return conversionTime;
+    }
+
+    public void setConversionTime(String conversionTime) {
+        this.conversionTime = conversionTime;
+    }
+
+    public String getNotWorkDate() {
+        return notWorkDate;
+    }
+
+    public void setNotWorkDate(String notWorkDate) {
+        this.notWorkDate = notWorkDate;
+    }
+
+    public String getEndContract() {
+        return endContract;
+    }
+
+    public void setEndContract(String endContract) {
+        this.endContract = endContract;
+    }
+
+    public String getBeginContract() {
+        return beginContract;
+    }
+
+    public void setBeginContract(String beginContract) {
+        this.beginContract = beginContract;
+    }
+
+    public Integer getWorkAge() {
+        return workAge;
+    }
+
+    public void setWorkAge(Integer workAge) {
+        this.workAge = workAge;
+    }
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
+
+    public Date getGmtCreate() {
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public Date getGmtModified() {
+        return gmtModified;
+    }
+
+    public void setGmtModified(Date gmtModified) {
+        this.gmtModified = gmtModified;
+    }
+
+    public Nation getNation() {
+        return nation;
+    }
+
+    public void setNation(Nation nation) {
+        this.nation = nation;
+    }
+
+    public Politicsstatus getPoliticsstatus() {
+        return politicsstatus;
+    }
+
+    public void setPoliticsstatus(Politicsstatus politicsstatus) {
+        this.politicsstatus = politicsstatus;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public Engageform getEngageform() {
+        return engageform;
+    }
+
+    public void setEngageform(Engageform engageform) {
+        this.engageform = engageform;
+    }
+
+    public Joblevel getJoblevel() {
+        return joblevel;
+    }
+
+    public void setJoblevel(Joblevel joblevel) {
+        this.joblevel = joblevel;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public Tiptopdegree getTiptopdegree() {
+        return tiptopdegree;
+    }
+
+    public void setTiptopdegree(Tiptopdegree tiptopdegree) {
+        this.tiptopdegree = tiptopdegree;
+    }
+
+    public Workstate getWorkstate() {
+        return workstate;
+    }
+
+    public void setWorkstate(Workstate workstate) {
+        this.workstate = workstate;
+    }
 }

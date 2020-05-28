@@ -44,10 +44,7 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
                 e.printStackTrace();
             }
         }
-    @Override
-    public List<Employee> exportemp(){
-        return employeeMapper.employeeinfo();
-    }
+
     @Override
     public void pageQuery(Page<Employee> pageParam, EmployeeQuery employeeQuery) {
         QueryWrapper<Employee> queryWrapper = new QueryWrapper<>();

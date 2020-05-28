@@ -6,10 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 
 
-import java.util.Date;
-
 @Data
-@Builder
 public class EmployeeData extends BaseRowModel {
     @ExcelProperty(value = "员工姓名",index = 0)
     private String name;

@@ -148,12 +148,7 @@ public class EmployeeController {
         employeeService.updateById(employee);
         return R.ok();
     }
-    /*@ApiOperation(value = "前端展示员工信息")
-    @GetMapping("list")
-    public R getEmployee(){
-        List<Employee> employees = employeeService.getEmployee();
-        return R.ok().data("employees",employees);
-    }*/
+
     @ApiOperation(value = "所有部门列表")
     @GetMapping("/deps")
     public R depsList() {
@@ -204,8 +199,6 @@ public class EmployeeController {
         List<Workstate> states = workstateService.list(null);
         return R.ok().data("states",states);
     }
-
-
 
     @ApiOperation(value = "统计员工男女人数")
     @GetMapping("gender")
@@ -265,41 +258,6 @@ public class EmployeeController {
         employeeService.saveEmp(file, employeeService);
         return R.ok();
     }
-    // excel上传添加
-    @PostMapping("upload")
-    @ResponseBody
-    public String upload(MultipartFile file) throws IOException {
-        EasyExcel.read(file.getInputStream(), Employee.class, new EmployeeListener(employeeService)).sheet().doRead();
-        return "success";
-    }
-
-    /*@GetMapping("download")
-    public void downloadFailedUsingJson(HttpServletResponse response) throws IOException {
-        // 这里注意 有同学反应使用swagger 会导致各种问题，请直接用浏览器或者用postman
-        try {
-            response.setContentType("application/vnd.ms-excel");
-            response.setCharacterEncoding("utf-8");
-            // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
-            String fileName = URLEncoder.encode("测试", "UTF-8");
-            response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
-            // 这里需要设置不关闭流
-            EasyExcel.write(response.getOutputStream(),EmployeeData.class).autoCloseStream(Boolean.FALSE).sheet("模板")
-                    .doWrite(data());
-        } catch (Exception e) {
-            // 重置response
-            response.reset();
-            response.setContentType("application/json");
-            response.setCharacterEncoding("utf-8");
-            Map<String, String> map = new HashMap<String, String>();
-            map.put("status", "failure");
-            map.put("message", "下载文件失败" + e.getMessage());
-            response.getWriter().println(JSON.toJSONString(map));
-        }
-    }
-    private List data() {
-        List<Employee> list = employeeService.exportemp();
-        return list;
-    }*/
 
 }
 

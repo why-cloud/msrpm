@@ -23,13 +23,12 @@ import java.util.Map;
  * @author msr
  * @since 2020-05-18
  */
+
 public interface EmployeeService extends IService<Employee> {
  void pageQuery(Page<Employee> pageParam, EmployeeQuery employeeQuery);
  public boolean addBatchEmployee(List<Employee> list);
-// public List<Employee> addBatchEmployee();
  public List<Employee> getAll();
  public List<Department> getAllDep();
- public List<Employee> exportemp();
  void saveEmp(MultipartFile file, EmployeeService employeeService);
 
  /**
