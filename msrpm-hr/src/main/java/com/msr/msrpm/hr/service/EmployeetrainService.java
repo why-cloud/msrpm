@@ -1,9 +1,11 @@
 package com.msr.msrpm.hr.service;
 
 import com.msr.common.utils.PageUtils;
+import com.msr.msrpm.hr.entity.Department;
 import com.msr.msrpm.hr.entity.Employeetrain;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,4 +18,5 @@ import java.util.Map;
  */
 public interface EmployeetrainService extends IService<Employeetrain> {
     PageUtils queryPage(Map<String, Object> params);
+    List<Department> getDepList();
 }
