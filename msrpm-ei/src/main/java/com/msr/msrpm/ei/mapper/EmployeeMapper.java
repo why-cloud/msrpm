@@ -21,7 +21,7 @@ import java.util.Map;
 public interface EmployeeMapper extends BaseMapper<Employee> {
     public List<Employee> getAll();
     public List<Department> getAllDep();
-
+    public boolean addBatchEmployee(List<Employee> list);
     //统计部门员工数
     @Select("SELECT department.name , count(*) value  FROM  employee, department where   employee.departmentId = department.id  group BY departmentId")
     List<Map<String, Object>> getDeCountOfEmp();

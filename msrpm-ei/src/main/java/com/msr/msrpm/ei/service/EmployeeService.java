@@ -25,11 +25,12 @@ import java.util.Map;
  */
 public interface EmployeeService extends IService<Employee> {
  void pageQuery(Page<Employee> pageParam, EmployeeQuery employeeQuery);
+ public boolean addBatchEmployee(List<Employee> list);
+// public List<Employee> addBatchEmployee();
  public List<Employee> getAll();
  public List<Department> getAllDep();
  public List<Employee> exportemp();
  void saveEmp(MultipartFile file, EmployeeService employeeService);
- public boolean saveData(List<Employee> employees);
 
  /**
   * 统计员工男女人数 張家興

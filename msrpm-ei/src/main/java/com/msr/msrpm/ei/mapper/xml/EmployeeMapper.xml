@@ -87,4 +87,23 @@
             <result column="depName" property="name"/>
         </association>
     </resultMap>
+    <insert id="addBatchEmployee" parameterType="java.util.List">
+        insert into employee (id,name, gender,birthday,idCard,wedlock,nationId,nativePlace,politicId,email,phone,address,departmentId,jobLevelId,
+        posId,formId,degreeId,speacilty,school,beginDate,stateIId,workID,contractTerm,conversionTime,notWorkDate,beginContract,
+        endContract,workAge) values
+        <foreach collection="list" item="emp" index="index"
+                 separator=",">
+            (#{emp.id,jdbcType=INTERGER},
+            #{emp.name,jdbcType=VARCHAR}, #{emp.gender,jdbcType=CHAR},#{emp.birthday,jdbcType=VARCHAR},
+            #{emp.idCard,jdbcType=CHAR}, #{emp.wedlock,jdbcType=CHAR},#{emp.nationId,jdbcType=INTEGER},
+            #{emp.nativePlace,jdbcType=VARCHAR}, #{emp.politicId,jdbcType=INTEGER}, #{emp.email,jdbcType=VARCHAR},
+            #{emp.phone,jdbcType=VARCHAR}, #{emp.address,jdbcType=VARCHAR}, #{emp.departmentId,jdbcType=INTEGER},
+            #{emp.jobLevelId,jdbcType=INTEGER}, #{emp.posId,jdbcType=INTEGER}, #{emp.formId,jdbcType=Interger},
+            #{emp.degreeId,jdbcType=INTERGER}, #{emp.specialty,jdbcType=VARCHAR}, #{emp.school,jdbcType=VARCHAR},
+            #{emp.beginDate,jdbcType=VARCHAR}, #{emp.stateIId,jdbcType=INTERGER}, #{emp.workID,jdbcType=CHAR},
+            #{emp.contractTerm,jdbcType=DOUBLE}, #{emp.conversionTime,jdbcType=VARCHAR}, #{emp.notWorkDate,jdbcType=VARCHAR},
+            #{emp.beginContract,jdbcType=VARCHAR}, #{emp.endContract,jdbcType=VARCHAR}, #{emp.workAge,jdbcType=INTEGER}
+            )
+        </foreach>
+    </insert>
 </mapper>

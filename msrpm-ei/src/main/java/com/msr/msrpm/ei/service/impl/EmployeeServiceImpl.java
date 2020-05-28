@@ -1,29 +1,22 @@
 package com.msr.msrpm.ei.service.impl;
 
 import com.alibaba.excel.EasyExcel;
-import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.msr.msrpm.ei.entity.Department;
 import com.msr.msrpm.ei.entity.Employee;
-import com.msr.msrpm.ei.entity.excel.EmployeeData;
-import com.msr.msrpm.ei.entity.vo.EmployeeInfoForm;
 import com.msr.msrpm.ei.listener.EmployeeListener;
-import com.msr.msrpm.ei.mapper.DepartmentMapper;
 import com.msr.msrpm.ei.mapper.EmployeeMapper;
 import com.msr.msrpm.ei.query.EmployeeQuery;
 import com.msr.msrpm.ei.service.EmployeeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.msr.servicebase.exception.MSRException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -38,17 +31,8 @@ import java.util.Map;
 @Service
 @Slf4j
 public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> implements EmployeeService {
-    @Autowired(required = false)
-    private DepartmentMapper departmentMapper;
     @Autowired
     private EmployeeMapper employeeMapper;
-    @Override
-    public boolean saveData(List<Employee> employees) {
-        log.info("EmployeeService {}条数据，开始存储数据库！", employees.size());
-        log.info(JSON.toJSONString(employees));
-        log.info("UserService 存储数据库成功！");
-        return true;
-    }
     @Override
         public void saveEmp(MultipartFile file, EmployeeService employeeService) {
             try {
@@ -96,6 +80,11 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
     public List<Department> getAllDep(){
 
         return employeeMapper.getAllDep();
+    }
+    @Override
+    public boolean addBatchEmployee(List<Employee> list){
+
+        return true;
     }
 
     /**

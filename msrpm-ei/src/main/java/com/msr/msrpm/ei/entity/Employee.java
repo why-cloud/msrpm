@@ -28,7 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="Employee对象", description="")
+@ApiModel(value="Employee对象", description="Employee entity")
 public class Employee implements Serializable {
     private static final long serialVersionUID = 1L;
 
