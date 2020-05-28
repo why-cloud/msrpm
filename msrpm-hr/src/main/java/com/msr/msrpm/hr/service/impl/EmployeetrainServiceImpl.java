@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.msr.common.utils.PageUtils;
 import com.msr.common.utils.Query;
+import com.msr.msrpm.hr.entity.Department;
 import com.msr.msrpm.hr.entity.Employcheck;
 import com.msr.msrpm.hr.entity.Employeeremove;
 import com.msr.msrpm.hr.entity.Employeetrain;
@@ -12,6 +13,7 @@ import com.msr.msrpm.hr.service.EmployeetrainService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,8 +37,13 @@ public class EmployeetrainServiceImpl extends ServiceImpl<EmployeetrainMapper, E
         );
         for(int i = 0;i<page.getRecords().size();i++){
             Employeetrain employeetrain = page.getRecords().get(i);
-            employeetrain.setName(baseMapper.getNameById(employeetrain.getId()))
-            ;}
+            employeetrain.setName(baseMapper.getNameById(employeetrain.getId()));
+            employeetrain.setDepName(baseMapper.getDepNameById(employeetrain.getDepartmentId()));}
         return new PageUtils(page);
+    }
+
+    @Override
+    public List<Department> getDepList() {
+        return baseMapper.getAllDepName();
     }
 }

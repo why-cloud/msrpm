@@ -18,8 +18,8 @@ import java.util.List;
 public interface EmployeetrainMapper extends BaseMapper<Employeetrain> {
     @Select("select name from employee where id = #{Id}")
     public String getNameById(Integer Id);
-//    @Select("select name from department where id = #{depId}")
-//    public String getDepNameById(Integer depId);
-//    @Select("select * from department")
-//    public List<Department> getAllDepName();
+    @Select("select name from department where id = #{depId}")
+    public String getDepNameById(Integer depId);
+    @Select("select * from department")
+    public List<Department> getAllDepName();
 }
